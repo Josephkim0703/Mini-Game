@@ -1,0 +1,108 @@
+body {
+  animation: colorChange 100s ease-in-out infinite;
+  overflow-x: hidden;
+  font-family: monospace;
+}
+
+@keyframes colorChange {
+  0% {
+    background-color: #9ca986;
+  } /* soft green */
+  10% {
+    background-color: #a7c1a8;
+  } /* mint green */
+  20% {
+    background-color: #a6d6d6;
+  } /* aqua */
+  30% {
+    background-color: #c8e7ff;
+  } /* light blue */
+  40% {
+    background-color: #a7aae1;
+  } /* soft lavender */
+  50% {
+    background-color: #d8e2dc;
+  } /* pale grey-pink */
+  60% {
+    background-color: #e7c988;
+  } /* warm tan */
+  70% {
+    background-color: #f8ad9d;
+  } /* soft peach */
+  80% {
+    background-color: #e5989b;
+  } /* muted red/pink */
+  90% {
+    background-color: #ca8787;
+  } /* dusty rose */
+  100% {
+    background-color: #9ca986;
+  } /* back to green */
+}
+
+#mainWrapper {
+  display: grid;
+  min-height: 100vh;
+  width: 100vw;
+  text-align: center;
+  z-index: 1;
+}
+
+#homePage main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 25px;
+  width: 95rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+}
+
+#homePage main button {
+  width: 35em;
+  height: 18em;
+  border-radius: 20px;
+  border: 7px double black;
+  transition: 0.1s ease-in-out;
+  display: block;
+  overflow: hidden;
+  padding: 0;
+}
+
+#homePage main button img {
+  width: 100%;
+}
+
+#homePage main button:hover {
+  transform: scale(1.025);
+  box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.3);
+  border: 2px solid black;
+}
+
+#homePage footer {
+  padding: 1rem;
+  text-align: center;
+}
+
+h1{
+  font-size: 2.5em;
+}
+
+#gamePage #returnButton{
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 3rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 10px;
+  color: white;
+}
+
+#gamePage #returnButton:hover{
+  transform: scale(1.05);
+  text-shadow: 0px 0px 10px white;
+}

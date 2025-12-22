@@ -1,0 +1,328 @@
+@font-face {
+  font-family: "pixelSmall";
+  src: url("/font/pixelSmall.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "pixelBig";
+  src: url("/font/pixelBig.otf") format("truetype");
+}
+
+@font-face {
+  font-family: "pixel";
+  src: url("/font/pixelText.ttf") format("truetype");
+}
+
+#ctc_backdrop {
+  position: absolute;
+  top: -100px;
+  left: -50px;
+  width: calc(100% + 100px);
+  height: calc(100% + 250px);
+  z-index: -2;
+  transform: scale(1), translateY(0);
+  filter: blur(9px);
+  transition: filter 1s ease-in, transform 5s ease-in-out;
+}
+
+#ctc_backdrop_lights {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 4s ease-in;
+}
+
+.light {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  opacity: 0.35;
+}
+
+.light.red {
+  left: 0;
+  background: radial-gradient(
+    circle at left center,
+    rgba(255, 0, 0, 0.95),
+    rgba(255, 0, 0, 0.45),
+    transparent 90%
+  );
+  animation: redPulse 2s ease-in-out infinite;
+}
+
+.light.blue {
+  right: 0;
+  background: radial-gradient(
+    circle at right center,
+    rgba(0, 80, 255, 0.95),
+    rgba(0, 80, 255, 0.45),
+    transparent 90%
+  );
+  animation: bluePulse 2s ease-in-out infinite;
+}
+
+@keyframes redPulse {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+@keyframes bluePulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+#startBox {
+  border: 10px ridge black;
+  background-color: white;
+  font-size: 0.8rem;
+  padding: 1rem;
+  width: 45rem;
+  height: 53.5rem;
+  font-family: "pixel";
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#startBox img {
+  width: auto;
+}
+
+#startBox h1 {
+  margin: 5px 0px 0px 0px;
+  text-shadow: -1px 2px 1px black;
+}
+
+#startBox h2 {
+  margin: 5px 0px 10px 0px;
+  color: black;
+}
+
+#startBox hr {
+  width: 40rem;
+  border: 1px dashed black;
+}
+
+#startBox button {
+  margin-top: 1px;
+  width: 14rem;
+  height: 3rem;
+  font-family: "pixel";
+  font-size: 2rem;
+  border: 8px ridge black;
+  background-color: rgb(255, 2, 2);
+  color: black;
+}
+
+#startBox button:hover {
+  background-color: rgb(163, 0, 0);
+  color: white;
+}
+
+#startBox button:active {
+  transform: scale(0.95);
+}
+
+#crackWrapper {
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#crackWrapper #textBox {
+  background-color: rgba(255, 255, 255, 0.6);
+  position: absolute;
+  bottom: 4%;
+  width: 36rem;
+  height: 11rem;
+  padding: 2.2rem;
+  margin-right: auto;
+  margin-left: auto;
+  border: 7px double black;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "pixel";
+  font-size: 1.1em;
+}
+
+#BoxWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 30%;
+}
+
+#BoxWrapper img {
+  width: 35rem;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  image-rendering: pixelated;
+}
+
+#BoxWrapper input {
+  position: absolute;
+  margin-bottom: 16rem;
+  margin-left: 11px;
+  width: 15.5rem;
+  height: 2.6rem;
+  font-size: 1.5rem;
+  z-index: 1;
+  font-family: "pixel";
+  outline: none;
+  background-color: rgb(200, 211, 44);
+  border: 4px ridge black;
+  padding-top: 5px;
+  padding-left: 10px;
+}
+
+#BoxWrapper #keyboard {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  z-index: 1;
+  margin-top: 18.5rem;
+}
+
+#BoxWrapper #keyboard button {
+  border: 5px ridge black;
+  font-family: "pixel";
+  font-size: 2rem;
+  padding: 1px;
+  background-color: rgb(185, 183, 164);
+  width: 2.6rem;
+  height: 2.6rem;
+  margin: 4px 9px;
+  z-index: 1;
+}
+
+#BoxWrapper #keyboard #enterButton {
+  background: green;
+  width: 6.3rem;
+}
+
+#BoxWrapper #keyboard #enterButton:hover {
+  background: rgb(0, 184, 0);
+  width: 6.3rem;
+}
+
+#BoxWrapper #keyboard button:hover {
+  background-color: rgb(247, 242, 209);
+}
+
+#BoxWrapper #keyboard button:active {
+  border: 5px groove black;
+}
+
+#BoxWrapper #timer {
+  position: absolute;
+  margin-right: 17px;
+  margin-bottom: 6rem;
+  width: 15.6rem;
+  height: 4rem;
+  z-index: 1;
+  font-family: "pixel";
+  outline: none;
+  background-color: black;
+  border: 4px ridge black;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#BoxWrapper #timer h1 {
+  margin-bottom: 27px;
+  font-size: 3.5rem;
+  color: red;
+}
+
+#BoxWrapper #healthBar {
+  position: absolute;
+  z-index: 1;
+  margin-top: 31px;
+  margin-left: 11px;
+}
+
+#BoxWrapper #healthBar .heart {
+  width: 1rem;
+  height: 1.4rem;
+  border: 5px outset black;
+  font-family: "pixel";
+  margin: 5px 10px;
+}
+
+#crackWrapper #textBox #ctc_phone{
+  position: absolute;
+  width: 10rem;
+  transform: rotate(-10deg);
+  z-index: 4;
+  top: 1rem;
+  left: -7rem;
+}
+
+#crackWrapper #textBox #flashLight{
+  position: absolute;
+  width: 4rem;
+  transform: rotate(-10deg);
+  z-index: 4;
+  top: 11rem;
+  left: 36rem;
+  z-index: 1;
+  transition: transform 0.1s ease-in-out;
+}
+
+#crackWrapper #textBox #flashLight:hover{
+  transform: scale(1.15) rotate(-10deg);
+}
+
+.phone-shake {
+  animation: shake 0.2s  infinite;
+}
+
+@keyframes shake {
+   0%,
+  100% {
+    transform:rotate(-10deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+}
+
+.light-pulse {
+  animation: pulse 0.8s infinite;
+}
+
+@keyframes pulse {
+   0%,
+  100% {
+    transform:scale(1) rotate(-10deg);
+  }
+  50% {
+    transform: scale(1.15) rotate(-10deg);
+  }
+}
