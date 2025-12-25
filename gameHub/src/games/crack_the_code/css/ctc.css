@@ -23,6 +23,33 @@
   transform: scale(1), translateY(0);
   filter: blur(9px);
   transition: filter 1s ease-in, transform 5s ease-in-out;
+
+}
+
+#ctc_explosion{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  width: 60%;
+  image-rendering: pixelated;
+   z-index: -1;
+}
+
+#ctc_gameover button{
+   margin-top: 1px;
+  width: 10rem;
+  height: 3rem;
+  font-family: "pixel";
+  font-size: 1.5rem;
+  border: 8px ridge black;
+  background-color: rgb(255, 2, 2);
+  color: black;
+}
+
+#ctc_gameover button:hover {
+  background-color: rgb(163, 0, 0);
+  color: white;
 }
 
 #ctc_backdrop_lights {

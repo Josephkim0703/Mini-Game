@@ -3,9 +3,12 @@ import "./css/ctc.css";
 import Box from "./utility/Box.jsx";
 import StartBox from "./utility/StartBox.jsx";
 import Script from "./utility/ScriptBox.jsx";
+import EndCredit from "./utility/EndCredit.jsx";
 import { initialScript } from "./utility/Script.jsx";
 
 function CrackTheCode() {
+  const [gameOver, setGameover] = useState({over: false, state: null,});
+  const [explosion, setExplosion] = useState("/image/crackthecode/explosion.gif");
   const [startGame, setStartGame] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const [index, setIndex] = useState(0);
@@ -44,7 +47,7 @@ function CrackTheCode() {
     setBackground("/image/crackthecode/ctc_black.jpg");
     setStyle((prev) => ({ ...prev, opacity1: 0 }));
     setIsDark(true);
-  }, 30000);
+  }, 37000);
 
   return () => clearTimeout(timeout);
 }, [startGame, isDark]);
@@ -56,6 +59,51 @@ function CrackTheCode() {
   setBackground("/image/crackthecode/ctc_guytiedup.png");
   setStyle((prev) => ({ ...prev, opacity1: 1 }));
   setIsDark(false);
+};
+
+//handles what happens when the game is over
+useEffect(() => {
+  if(gameOver.over == true){
+    setBackground("/image/crackthecode/ctc_black.jpg");
+    updateHide(3, false);
+    updateHide(1, false);
+    if(gameOver.state == "lose"){
+      updateHide(4, true);
+      updateHide(5, true);
+       setTimeout(() => {
+      setBackground("/image/crackthecode/ctc_black.jpg");  
+      updateHide(5, false);
+    },1000)
+    }else{
+       updateHide(4, true);
+    }
+   
+  }
+},[gameOver])
+
+//restart the game
+const restart = () => {
+   setStyle({
+    blur: 9,
+    scale: 1,
+    translate: "0px",
+    opacity: 1,
+    opacity1: 1,
+    transition: "filter 1s ease-in, transform 5s ease-in-out",
+    width: "10rem",
+  })
+   updateHide(0, false);
+   updateHide(1, false);
+   updateHide(3, false);
+   updateHide(2, true);
+   updateHide(4, false);
+   updateHide(5, false);
+   setCurrentLine(0);
+   setIndex(0);
+   setStartGame(false);
+   setPhone("/image/crackthecode/ctc_phone_blank.png");
+   setBackground( "/image/crackthecode/ctc_backdrop.png");
+   setIsDark(false);
 };
 
   return (
@@ -78,9 +126,12 @@ function CrackTheCode() {
             setIndex={setIndex}
             currentLine={currentLine}
             setCurrentLine={setCurrentLine}
+            setBackground={setBackground}
             script={script}
             setScript={setScript}
             style={style}
+            setPhone={setPhone}
+            setGameover={setGameover}
           />
         )}
         {hide[3] && (
@@ -95,7 +146,12 @@ function CrackTheCode() {
             phoneRef={phoneRef}
             flashRef={flashRef}
             handleFlash={handleFlash}
+            gameOver={gameOver}
           />
+        )}
+
+        {hide[4] && (
+          <EndCredit gameOver={gameOver} restart={restart}/>
         )}
         {!hide[2] && (
           <>
@@ -104,6 +160,9 @@ function CrackTheCode() {
               <div className="light blue"></div>
             </div>
           </>
+        )}
+        {hide[5] && (
+          <img src={explosion} alt="explosion" id="ctc_explosion"/>
         )}
         <img
           src={background}

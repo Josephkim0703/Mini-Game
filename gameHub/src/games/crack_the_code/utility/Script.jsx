@@ -358,6 +358,8 @@ export const initialScript = [
       <span>
         Officer if I were to tell you that the man tied up is the reason your
         wife and child are no longer with us... will you continue to save him?
+          <br />
+        <span style={{ color: "rgb(255,190,0)" }}>(Clue: Follow your gut)</span>
       </span>
     ),
     time: 0,

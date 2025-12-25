@@ -77,8 +77,6 @@ function Box(props) {
 
       const cleanWord = randomWord.replace(/-/g, " ").trim();
 
-      setAnswer(cleanWord.toLowerCase());
-
       const MORSE_MAP = {
         a: ".-",
         b: "-...",
@@ -118,7 +116,14 @@ function Box(props) {
           .replace(/\s+/g, " ")
           .trim();
       }
-      setTemp(textToMorse(cleanWord));
+      if (!cleanWord) {
+        setAnswer("temporary");
+        setTemp(textToMorse("temporary"));
+      } else {
+        const lower = cleanWord.toLowerCase();
+        setAnswer(lower);
+        setTemp(textToMorse(lower));
+      }
     }
     //grabs two elements then create an equation to find a third element
     function fetchElements() {
@@ -325,7 +330,7 @@ function Box(props) {
     else if (props.index === 7) fetchLocation();
     else if (props.index === 8) fetchCards();
     else if (props.index === 9) fetchMoral();
-    console.log(answer);
+    console.log("Answer: " + answer);
   }, [props.index]);
   //Scriptline injections
   useEffect(() => {
@@ -475,10 +480,17 @@ function Box(props) {
         setTemp(
           "Justice always feels heavier when you’re the one holding the timer… thank you for playing my game, officer."
         );
+
+        setTimeout(() => {
+          props.setGameover((prev) => ({ ...prev, state: "win", over: true }));
+        }, 9000);
       } else {
         setTemp(
           "You chose to carry the weight instead of ending it. Fascinating… thank you for playing my game, officer."
         );
+        setTimeout(() => {
+          props.setGameover((prev) => ({ ...prev, state: "win", over: true }));
+        }, 9000);
       }
       setValue("");
       props.setCurrentLine((prev) => prev + 1);
@@ -502,7 +514,7 @@ function Box(props) {
         return newArr;
       });
     } else {
-      alert("BANG");
+      props.setGameover((prev) => ({ ...prev, state: "lose", over: true }));
     }
   };
   //handle timer
@@ -530,6 +542,12 @@ function Box(props) {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  useEffect(() => {
+    if (timerSeconds == 0) {
+      props.setGameover((prev) => ({ ...prev, state: "lose", over: true }));
+    }
+  }, [timerSeconds]);
   //handle num pad on bomb
   const handleKeyboard = (num) => {
     setValue((prev) => {
@@ -539,7 +557,7 @@ function Box(props) {
 
   return (
     <>
-      <div id="BoxWrapper" style={{opacity : props.style.opacity1}}>
+      <div id="BoxWrapper" style={{ opacity: props.style.opacity1 }}>
         <img
           src="/image/crackthecode/bomb_module.png"
           alt="bomb"
@@ -553,6 +571,8 @@ function Box(props) {
         />
         <div id="timer">
           <h1>{formatTime(timerSeconds)}</h1>
+        </div>
+        <div style={{ color: "white" }}>
         </div>
         <div id="keyboard">
           <span>
