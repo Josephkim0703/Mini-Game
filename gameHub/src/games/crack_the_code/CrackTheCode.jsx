@@ -51,10 +51,8 @@ function CrackTheCode() {
 
   return () => clearTimeout(timeout);
 }, [startGame, isDark]);
-
  const handleFlash = () => {
   if (!startGame || !isDark) return;
-
   flashRef.current.classList.remove("light-pulse");
   setBackground("/image/crackthecode/ctc_guytiedup.png");
   setStyle((prev) => ({ ...prev, opacity1: 1 }));

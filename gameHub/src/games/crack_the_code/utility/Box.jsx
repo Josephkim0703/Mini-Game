@@ -11,7 +11,6 @@ function Box(props) {
   const [value, setValue] = useState("");
   const [answer, setAnswer] = useState("");
   const [lives, setLives] = useState(0);
-
   const [heart, setHeart] = useState([
     { state: "1", color: "rgb(0, 161, 0)" },
     { state: "1", color: "rgb(0, 161, 0)" },
@@ -468,14 +467,21 @@ function Box(props) {
         };
         return newArr;
       });
+    } 
+    if(props.currentLine == (initialScript.length - 3)){
+      props.setPhone("/image/crackthecode/ctc_phone_fam.png");
+    }else{
+        props.setPhone("/image/crackthecode/ctc_phone_pickUp.png");
     }
   }, [props.currentLine]);
 
   //handle defuse button
   const handleClick = () => {
     const normalized = value.trim().toLowerCase();
-
     if (props.index === 9) {
+     if (!["yes", "no"].includes(normalized))
+        {setValue("");
+        return;}
       if (normalized == "no") {
         setTemp(
           "Justice always feels heavier when you’re the one holding the timer… thank you for playing my game, officer."
@@ -484,7 +490,7 @@ function Box(props) {
         setTimeout(() => {
           props.setGameover((prev) => ({ ...prev, state: "win", over: true }));
         }, 9000);
-      } else {
+      } else{
         setTemp(
           "You chose to carry the weight instead of ending it. Fascinating… thank you for playing my game, officer."
         );
@@ -573,6 +579,7 @@ function Box(props) {
           <h1>{formatTime(timerSeconds)}</h1>
         </div>
         <div style={{ color: "white" }}>
+         <h1>{answer}</h1> 
         </div>
         <div id="keyboard">
           <span>
