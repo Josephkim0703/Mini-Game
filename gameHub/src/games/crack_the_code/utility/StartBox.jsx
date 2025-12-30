@@ -2,6 +2,7 @@ import "../css/ctc.css";
 
 function StartBox(props) {
   const startGame = () => {
+    props.setAudio("/image/sounds/ctc_music_2.mp3");
     props.updateHide(0, true);
     props.setStyle((prev) => ({ ...prev, blur: 0 }));
     props.updateHide(3, true);

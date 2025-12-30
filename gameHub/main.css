@@ -90,19 +90,29 @@ h1{
   font-size: 2.5em;
 }
 
-#gamePage #returnButton{
-  background-color: transparent;
+#gamePage .homeButtons{
+ background-color: transparent;
   border: none;
-  color: white;
-  font-size: 3rem;
+  color: white; 
   position: absolute;
-  top: 0;
-  left: 0;
   margin: 10px;
   color: white;
 }
 
-#gamePage #returnButton:hover{
+#gamePage #returnButton{
+  top: 0;
+  left: 0;
+  font-size: 2.5rem;
+}
+
+#gamePage #volumnButton{
+  top: 0;
+  right: 0;
+  font-size: 2rem;
+}
+
+
+#gamePage button:hover{
   transform: scale(1.05);
   text-shadow: 0px 0px 10px white;
 }

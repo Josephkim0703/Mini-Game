@@ -55,27 +55,19 @@ function Box(props) {
     //gets random word then converts to morse code
     async function fetchMorse() {
       setPlaceHolder("Enter: Word");
-
       let randomWord = "";
-
       try {
-        const resWord = await fetch("https://api.apiverve.com/v1/randomwords", {
-          headers: {
-            "x-api-key": "8e24f808-d74e-46cf-8b9d-d0cc8bb6cdde",
-          },
-        });
-
+        const resWord = await fetch(
+          "https://random-word-api.herokuapp.com/word"
+        );
         const data = await resWord.json();
-        randomWord = data?.data?.word;
-
+        randomWord = data[0];
         if (!randomWord) throw new Error("No word returned");
       } catch (err) {
         console.error("Error fetching word data:", err);
         return;
       }
-
       const cleanWord = randomWord.replace(/-/g, " ").trim();
-
       const MORSE_MAP = {
         a: ".-",
         b: "-...",
@@ -467,11 +459,11 @@ function Box(props) {
         };
         return newArr;
       });
-    } 
-    if(props.currentLine == (initialScript.length - 3)){
+    }
+    if (props.currentLine == initialScript.length - 3) {
       props.setPhone("/image/crackthecode/ctc_phone_fam.png");
-    }else{
-        props.setPhone("/image/crackthecode/ctc_phone_pickUp.png");
+    } else {
+      props.setPhone("/image/crackthecode/ctc_phone_pickUp.png");
     }
   }, [props.currentLine]);
 
@@ -479,18 +471,18 @@ function Box(props) {
   const handleClick = () => {
     const normalized = value.trim().toLowerCase();
     if (props.index === 9) {
-     if (!["yes", "no"].includes(normalized))
-        {setValue("");
-        return;}
+      if (!["yes", "no"].includes(normalized)) {
+        setValue("");
+        return;
+      }
       if (normalized == "no") {
         setTemp(
           "Justice always feels heavier when you’re the one holding the timer… thank you for playing my game, officer."
         );
-
         setTimeout(() => {
           props.setGameover((prev) => ({ ...prev, state: "win", over: true }));
         }, 9000);
-      } else{
+      } else {
         setTemp(
           "You chose to carry the weight instead of ending it. Fascinating… thank you for playing my game, officer."
         );
@@ -577,9 +569,6 @@ function Box(props) {
         />
         <div id="timer">
           <h1>{formatTime(timerSeconds)}</h1>
-        </div>
-        <div style={{ color: "white" }}>
-         <h1>{answer}</h1> 
         </div>
         <div id="keyboard">
           <span>

@@ -5,53 +5,54 @@ import CrackTheCode from "./games/crack_the_code/CrackTheCode.jsx";
 function App() {
   const [currentGame, setCurrentGame] = useState(null);
   const [hide, setHide] = useState(true);
+  const [muted, setMuted] = useState(false);
 
   const games = [
     {
       name: "Crack The Code",
-      component: <CrackTheCode />,
+      component: CrackTheCode,
       link: null,
       thumbnail: "/image/wallpapers/crackthecode.png",
       status: "active",
     },
     {
       name: "",
-      component: <div>Coming Soon!</div>,
-      link: 'https://josephkim0703.github.io/devil-fruit-encyclopedia/',
+      component: () => <div>Off Site</div>,
+      link: "https://josephkim0703.github.io/devil-fruit-encyclopedia/",
       thumbnail: "/image/wallpapers/onepiece.jpg",
       status: "none",
     },
     {
       name: "",
-      component: <div>Coming Soon!</div>,
-      link: 'https://josephkim0703.github.io/Domain-Expansion/',
+      component: () => <div>Off Site</div>,
+      link: "https://josephkim0703.github.io/Domain-Expansion/",
       thumbnail: "/image/wallpapers/domainExpansion2.png",
       status: "none",
     },
     {
       name: "",
-      component: <div>Coming Soon!</div>,
+      component: () => <div>Coming Soon!</div>,
       thumbnail: "/image/wallpapers/construction.png",
       status: "none",
     },
     {
       name: "",
-      component: <div>Coming Soon!</div>,
+      component: () => <div>Coming Soon!</div>,
       thumbnail: "/image/wallpapers/construction.png",
       status: "none",
     },
     {
       name: "",
-      component: <div>Coming Soon!</div>,
+      component: () => <div>Coming Soon!</div>,
       thumbnail: "/image/wallpapers/construction.png",
       status: "none",
     },
   ];
 
   const handleClick = (index) => {
-    if(games[index].link === null){
-        setCurrentGame(index);
-        setHide(false);
+    if (games[index].link === null) {
+      setCurrentGame(index);
+      setHide(false);
     }
   };
 
@@ -59,6 +60,13 @@ function App() {
     setCurrentGame(null);
     setHide(true);
   };
+
+  const handleAudio = () => {
+    setMuted((prev) => !prev);
+  };
+
+  const GameComponent =
+    currentGame !== null ? games[currentGame].component : null;
 
   return (
     <div id="mainWrapper">
@@ -71,12 +79,11 @@ function App() {
 
           <main>
             {games.map((game, index) => (
-              <a href={game.link} key={index}><button  onClick={() => handleClick(index)} >
-                <img
-                  src={game.thumbnail}
-                  alt={game.name}
-                />
-              </button></a>
+              <a href={game.link} key={index}>
+                <button onClick={() => handleClick(index)}>
+                  <img src={game.thumbnail} alt={game.name} />
+                </button>
+              </a>
             ))}
           </main>
 
@@ -87,8 +94,16 @@ function App() {
       )}
       {!hide && currentGame !== null && (
         <div id="gamePage">
-          <button onClick={handleReturn} type="button" id="returnButton">&#8634;</button>
-          {games[currentGame].component}
+          <button onClick={handleReturn} type="button" id="returnButton" className="homeButtons">
+            &#8634;
+          </button>
+          {GameComponent && <GameComponent volume={muted ? 0 : 0.5 } />}
+          <button
+            onClick={handleAudio}
+            type="button"
+            id="volumnButton"
+            className="homeButtons"
+          >{muted ?  "🕨": "🕪" }</button>
         </div>
       )}
     </div>

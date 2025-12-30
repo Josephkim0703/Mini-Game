@@ -6,9 +6,12 @@ import Script from "./utility/ScriptBox.jsx";
 import EndCredit from "./utility/EndCredit.jsx";
 import { initialScript } from "./utility/Script.jsx";
 
-function CrackTheCode() {
-  const [gameOver, setGameover] = useState({over: false, state: null,});
-  const [explosion, setExplosion] = useState("/image/crackthecode/explosion.gif");
+function CrackTheCode(props) {
+  const [gameOver, setGameover] = useState({ over: false, state: null });
+  const [explosion, setExplosion] = useState(
+    "/image/crackthecode/explosion.gif"
+  );
+  const [audio, setAudio] = useState("/image/sounds/ctc_music_4.mp3");
   const [startGame, setStartGame] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const [index, setIndex] = useState(0);
@@ -38,71 +41,98 @@ function CrackTheCode() {
     });
   }
 
-//handles game effect where every 30 seconds light turn off and must use light to turn back on
- useEffect(() => {
-  if (!startGame || isDark) return;
+  //handles game effect where every 30 seconds light turn off and must use light to turn back on
+  useEffect(() => {
+    if (!startGame || isDark) return;
 
-  const timeout = setTimeout(() => {
-    flashRef.current.classList.add("light-pulse");
-    setBackground("/image/crackthecode/ctc_black.jpg");
-    setStyle((prev) => ({ ...prev, opacity1: 0 }));
-    setIsDark(true);
-  }, 37000);
+    const timeout = setTimeout(() => {
+      flashRef.current.classList.add("light-pulse");
+      setBackground("/image/crackthecode/ctc_black.jpg");
+      setStyle((prev) => ({ ...prev, opacity1: 0 }));
+      setIsDark(true);
+    }, 37000);
 
-  return () => clearTimeout(timeout);
-}, [startGame, isDark]);
- const handleFlash = () => {
-  if (!startGame || !isDark) return;
-  flashRef.current.classList.remove("light-pulse");
-  setBackground("/image/crackthecode/ctc_guytiedup.png");
-  setStyle((prev) => ({ ...prev, opacity1: 1 }));
-  setIsDark(false);
-};
+    return () => clearTimeout(timeout);
+  }, [startGame, isDark]);
+  const handleFlash = () => {
+    if (!startGame || !isDark) return;
+    flashRef.current.classList.remove("light-pulse");
+    setBackground("/image/crackthecode/ctc_guytiedup.png");
+    setStyle((prev) => ({ ...prev, opacity1: 1 }));
+    setIsDark(false);
+  };
 
-//handles what happens when the game is over
-useEffect(() => {
-  if(gameOver.over == true){
-    setBackground("/image/crackthecode/ctc_black.jpg");
-    updateHide(3, false);
-    updateHide(1, false);
-    if(gameOver.state == "lose"){
-      updateHide(4, true);
-      updateHide(5, true);
-       setTimeout(() => {
-      setBackground("/image/crackthecode/ctc_black.jpg");  
-      updateHide(5, false);
-    },1000)
-    }else{
-       updateHide(4, true);
+  //handles what happens when the game is over
+  useEffect(() => {
+    if (gameOver.over == true) {
+      setBackground("/image/crackthecode/ctc_black.jpg");
+      updateHide(3, false);
+      updateHide(1, false);
+      setAudio("/image/sounds/ctc_victory.mp3");
+      setBgmloop(false);
+      if (gameOver.state == "lose") {
+        updateHide(4, true);
+        updateHide(5, true);
+        setAudio("/image/sounds/ctc_explosion.mp3");
+        setBgmloop(false);
+        setTimeout(() => {
+          setBackground("/image/crackthecode/ctc_black.jpg");
+          updateHide(5, false);
+        }, 1000);
+      } else {
+        updateHide(4, true);
+      }
     }
-   
-  }
-},[gameOver])
+  }, [gameOver]);
 
-//restart the game
-const restart = () => {
-   setStyle({
-    blur: 9,
-    scale: 1,
-    translate: "0px",
-    opacity: 1,
-    opacity1: 1,
-    transition: "filter 1s ease-in, transform 5s ease-in-out",
-    width: "10rem",
-  })
-   updateHide(0, false);
-   updateHide(1, false);
-   updateHide(3, false);
-   updateHide(2, true);
-   updateHide(4, false);
-   updateHide(5, false);
-   setCurrentLine(0);
-   setIndex(0);
-   setStartGame(false);
-   setPhone("/image/crackthecode/ctc_phone_blank.png");
-   setBackground( "/image/crackthecode/ctc_backdrop.png");
-   setIsDark(false);
-};
+  //restart the game
+  const restart = () => {
+    setStyle({
+      blur: 9,
+      scale: 1,
+      translate: "0px",
+      opacity: 1,
+      opacity1: 1,
+      transition: "filter 1s ease-in, transform 5s ease-in-out",
+      width: "10rem",
+    });
+    updateHide(0, false);
+    updateHide(1, false);
+    updateHide(3, false);
+    updateHide(2, true);
+    updateHide(4, false);
+    updateHide(5, false);
+    setCurrentLine(0);
+    setIndex(0);
+    setStartGame(false);
+    setPhone("/image/crackthecode/ctc_phone_blank.png");
+    setBackground("/image/crackthecode/ctc_backdrop.png");
+    setIsDark(false);
+    setAudio("/image/sounds/ctc_music_4.mp3");
+    setBgmloop(true);
+  };
+
+  //audio
+  const bgmRef = useRef(null);
+  const [bgmloop, setBgmloop] = useState(true);
+  useEffect(() => {
+    bgmRef.current = new Audio(audio);
+    bgmRef.current.loop = bgmloop;
+    bgmRef.current.play();
+    bgmRef.current.volume = 0.5;
+
+    return () => {
+      bgmRef.current.pause();
+      bgmRef.current.currentTime = 0;
+      bgmRef.current = null;
+    };
+  }, [audio]);
+
+  useEffect(() => {
+    if (bgmRef.current) {
+      bgmRef.current.volume = props.volume;
+    }
+  }, [props.volume]);
 
   return (
     <>
@@ -116,6 +146,7 @@ const restart = () => {
             phoneRef={phoneRef}
             startGame={startGame}
             setStartGame={setStartGame}
+            setAudio={setAudio}
           />
         )}
         {hide[1] && (
@@ -130,6 +161,7 @@ const restart = () => {
             style={style}
             setPhone={setPhone}
             setGameover={setGameover}
+            setAudio={setAudio}
           />
         )}
         {hide[3] && (
@@ -148,9 +180,7 @@ const restart = () => {
           />
         )}
 
-        {hide[4] && (
-          <EndCredit gameOver={gameOver} restart={restart}/>
-        )}
+        {hide[4] && <EndCredit gameOver={gameOver} restart={restart} />}
         {!hide[2] && (
           <>
             <div id="ctc_backdrop_lights" style={{ opacity: style.opacity }}>
@@ -159,9 +189,7 @@ const restart = () => {
             </div>
           </>
         )}
-        {hide[5] && (
-          <img src={explosion} alt="explosion" id="ctc_explosion"/>
-        )}
+        {hide[5] && <img src={explosion} alt="explosion" id="ctc_explosion" />}
         <img
           src={background}
           alt="dirty alleyway"
