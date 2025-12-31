@@ -2,7 +2,7 @@ import "../css/ctc.css";
 
 function StartBox(props) {
   const startGame = () => {
-    props.setAudio("/image/sounds/ctc_music_2.mp3");
+    props.setAudio("/assets/crackthecode/sounds/ctc_music_2.mp3");
     props.updateHide(0, true);
     props.setStyle((prev) => ({ ...prev, blur: 0 }));
     props.updateHide(3, true);
@@ -11,11 +11,11 @@ function StartBox(props) {
       props.setStyle((prev) => ({ ...prev, translate: "150px" }));
 
       setTimeout(() => {
-        props.setBackground("/image/crackthecode/ctc_backdrop_open.png");
+        props.setBackground("/assets/crackthecode/image/ctc_backdrop_open.png");
         props.setStyle((prev) => ({ ...prev, opacity: 0 }));
 
         setTimeout(() => {
-          props.setBackground("/image/crackthecode/ctc_black.jpg");
+          props.setBackground("/assets/crackthecode/image/ctc_black.jpg");
           props.updateHide(2, true);
           props.setStyle((prev) => ({ ...prev, transition: "none" }));
           props.setStyle((prev) => ({ ...prev, scale: 1 }));
@@ -27,8 +27,8 @@ function StartBox(props) {
             const int = setInterval(() => {
               props.setBackground(
                 on
-                  ? "/image/crackthecode/ctc_black.jpg"
-                  : "/image/crackthecode/ctc_darkroom.png"
+                  ? "/assets/crackthecode/image/ctc_black.jpg"
+                  : "/assets/crackthecode/image/ctc_darkroom.png"
               );
               on = !on;
             }, 250);
@@ -39,18 +39,18 @@ function StartBox(props) {
               let on = true;
               setTimeout(() => {
                 props.phoneRef.current.classList.add("phone-shake");
-                props.setPhone("/image/crackthecode/ctc_phone.png");
+                props.setPhone("/assets/crackthecode/image/ctc_phone.png");
                 setTimeout(() => {
                   props.phoneRef.current.classList.remove("phone-shake");
-                  props.setPhone("/image/crackthecode/ctc_phone_pickUp.png");
+                  props.setPhone("/assets/crackthecode/image/ctc_phone_pickUp.png");
                 }, 2500);
               }, 8300);
 
               const int = setInterval(() => {
                 props.setBackground(
                   on
-                    ? "/image/crackthecode/ctc_guytiedup.png"
-                    : "/image/crackthecode/ctc_guytiedup_open.png"
+                    ? "/assets/crackthecode/image/ctc_guytiedup.png"
+                    : "/assets/crackthecode/image/ctc_guytiedup_open.png"
                 );
                 on = !on;
               }, 300);
@@ -90,7 +90,7 @@ function StartBox(props) {
           <span style={{ color: "red" }}> red</span>, the game is over.
         </h2>
         <img
-          src="/image/crackthecode/tutorial_1.jpg"
+          src="/assets/crackthecode/image/tutorial_1.jpg"
           alt="Green and red indicator lights on the bomb module"
         />
         <hr />
@@ -98,7 +98,7 @@ function StartBox(props) {
         <h2>Every so often the lights will turn off and you will no longer be able to see <br />
         use the Flash light to turn the lights back on</h2>
          <img style={{width : "5rem"}}
-          src="/image/crackthecode/ctc_flashLight.png"
+          src="/assets/crackthecode/image/ctc_flashLight.png"
           alt="Green and red indicator lights on the bomb module"
         /></span>
         <hr />
@@ -111,7 +111,7 @@ function StartBox(props) {
           by using your keyboard or by pressing the number pad on the bomb.
         </h2>
         <img
-          src="/image/crackthecode/tutorial_3.jpg"
+          src="/assets/crackthecode/image/tutorial_3.jpg"
           alt="Number pad on the bomb module"
           style={{width : "7rem"}}
         />
@@ -124,7 +124,7 @@ function StartBox(props) {
           typing or deleting
         </h2>
         <img
-          src="/image/crackthecode/tutorial_2.jpg"
+          src="/assets/crackthecode/image/tutorial_2.jpg"
           alt="Input screen on the bomb module"
         />
         <hr />
@@ -133,7 +133,7 @@ function StartBox(props) {
           to submit your answer.
         </h2>
         <img
-          src="/image/crackthecode/tutorial_4.jpg"
+          src="/assets/crackthecode/image/tutorial_4.jpg"
           alt="Enter button on the bomb module"
         />
         <hr />

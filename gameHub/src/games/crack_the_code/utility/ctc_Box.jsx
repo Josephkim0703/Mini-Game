@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { Moon } from "lunarphase-js";
-import { initialScript } from "../utility/Script.jsx";
+import { initialScript } from "./ctc_Script.jsx";
 import elements from "../json/elements.json";
 import "../css/ctc.css";
 function Box(props) {
@@ -33,11 +33,7 @@ function Box(props) {
       try {
         const res = await fetch(
           "https://api.apiverve.com/v1/lottery?numbers=megamillions",
-          {
-            headers: {
-              "x-api-key": "8e24f808-d74e-46cf-8b9d-d0cc8bb6cdde",
-            },
-          }
+          { headers: { "x-api-key": "8e24f808-d74e-46cf-8b9d-d0cc8bb6cdde" } }
         );
 
         const data = await res.json();
@@ -461,9 +457,9 @@ function Box(props) {
       });
     }
     if (props.currentLine == initialScript.length - 3) {
-      props.setPhone("/image/crackthecode/ctc_phone_fam.png");
+      props.setPhone("/assets/crackthecode/image/ctc_phone_fam.png");
     } else {
-      props.setPhone("/image/crackthecode/ctc_phone_pickUp.png");
+      props.setPhone("/assets/crackthecode/image/ctc_phone_pickUp.png");
     }
   }, [props.currentLine]);
 
@@ -557,7 +553,7 @@ function Box(props) {
     <>
       <div id="BoxWrapper" style={{ opacity: props.style.opacity1 }}>
         <img
-          src="/image/crackthecode/bomb_module.png"
+          src="/assets/crackthecode/image/bomb_module.png"
           alt="bomb"
           id="bomb_module"
         />

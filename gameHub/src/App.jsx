@@ -1,7 +1,7 @@
 import "/main.css";
 import { useEffect, useState, useRef } from "react";
 import CrackTheCode from "./games/crack_the_code/CrackTheCode.jsx";
-
+import OnceUponATune from "./games/once_upon_a_tune/OnceUponATune.jsx";
 function App() {
   const [currentGame, setCurrentGame] = useState(null);
   const [hide, setHide] = useState(true);
@@ -12,39 +12,40 @@ function App() {
       name: "Crack The Code",
       component: CrackTheCode,
       link: null,
-      thumbnail: "/image/wallpapers/crackthecode.png",
+      thumbnail: "/assets/wallpapers/crackthecode.png",
+      status: "active",
+    },
+    {
+      name: "Once Upon A Tune",
+      component: OnceUponATune,
+      link: null,
+      thumbnail: "/assets/wallpapers/onceuponatune.jpg",
       status: "active",
     },
     {
       name: "",
       component: () => <div>Off Site</div>,
       link: "https://josephkim0703.github.io/devil-fruit-encyclopedia/",
-      thumbnail: "/image/wallpapers/onepiece.jpg",
-      status: "none",
+      thumbnail: "/assets/wallpapers/onepiece.jpg",
+      status: "active",
     },
     {
       name: "",
       component: () => <div>Off Site</div>,
       link: "https://josephkim0703.github.io/Domain-Expansion/",
-      thumbnail: "/image/wallpapers/domainExpansion2.png",
+      thumbnail: "/assets/wallpapers/domainExpansion2.png",
+      status: "active",
+    },
+    {
+      name: "",
+      component: () => <div>Coming Soon!</div>,
+      thumbnail: "/assets/wallpapers/construction.png",
       status: "none",
     },
     {
       name: "",
       component: () => <div>Coming Soon!</div>,
-      thumbnail: "/image/wallpapers/construction.png",
-      status: "none",
-    },
-    {
-      name: "",
-      component: () => <div>Coming Soon!</div>,
-      thumbnail: "/image/wallpapers/construction.png",
-      status: "none",
-    },
-    {
-      name: "",
-      component: () => <div>Coming Soon!</div>,
-      thumbnail: "/image/wallpapers/construction.png",
+      thumbnail: "/assets/wallpapers/construction.png",
       status: "none",
     },
   ];

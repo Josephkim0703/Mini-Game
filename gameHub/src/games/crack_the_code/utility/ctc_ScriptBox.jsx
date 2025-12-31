@@ -28,7 +28,7 @@ function ScriptBox(props) {
   const handlePhoneEnter = () => {
     props.setPhone((prev) => {
       prevPhoneRef.current = prev;
-      return "/image/crackthecode/ctc_phone_fam.png";
+      return "/assets/crackthecode/image/ctc_phone_fam.png";
     });
   };
 
@@ -52,7 +52,7 @@ function ScriptBox(props) {
         <h2>{speak}</h2>
         <img
           id="flashLight"
-          src="/image/crackthecode/ctc_flashLight.png"
+          src="/assets/crackthecode/image/ctc_flashLight.png"
           alt="flash Light"
           ref={props.flashRef}
           onClick={props.handleFlash}
