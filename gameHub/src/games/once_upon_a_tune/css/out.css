@@ -10,3 +10,28 @@
   transition: filter 1s ease-in, transform 5s ease-in-out;
 
 }
+
+#tuneWrapper{
+ 
+}
+
+#out_BoxWrapper #out_healthBar{
+  width: 30rem;
+  height: auto;
+  background-color: white;
+  border: 2px solid black;
+  position: relative;
+  display: flex;
+  padding: 1rem;
+
+}
+
+#out_BoxWrapper .out_attempts{
+  width: 5rem;
+  height: 5rem;
+  background-color: green;
+  z-index: 1;
+  border-radius: 50%;
+  border: 2px solid black;
+  margin: 5px;
+}
