@@ -1,18 +1,14 @@
 #out_backdrop {
   position: absolute;
-  top: -100px;
-  left: -50px;
-  width: calc(100% + 100px);
-  height: calc(100% + 250px);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: -2;
-  transform: scale(1), translateY(0);
-  filter: blur(9px);
-  transition: filter 1s ease-in, transform 5s ease-in-out;
-
 }
 
-#tuneWrapper{
- 
+#tuneWrapper {
+
 }
 
 #out_BoxWrapper #out_healthBar{

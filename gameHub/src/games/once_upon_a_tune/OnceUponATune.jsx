@@ -5,7 +5,7 @@ import StartBox from "./utility/out_StartBox.jsx";
 import { audioFile } from "./utility/out_Audiofile.jsx";
 function OnceUponATune(props) {
   const [hide, setHide] = useState(Array(10).fill(false));
-  const [background, setBackground] = useState();
+  const [background, setBackground] = useState(null);
   const [song, setSong] = useState(null);
   const [answer, setAnswer] = useState(null);
   const [current, setCurrent] = useState(0);
@@ -14,7 +14,9 @@ function OnceUponATune(props) {
   const [text, setText] = useState("");
   const [toggle, setToggle] = useState(false);
   const [genre, setGenre] = useState("");
-
+  const [hint, setHint] = useState("");
+  const [storeNum, setStoreNum] = useState(null);
+  const [used, setUsed] = useState(false);
   function updateHide(index, value) {
     setHide((prev) => {
       const arr = [...prev];
@@ -27,33 +29,37 @@ function OnceUponATune(props) {
   useEffect(() => {
     if (current <= 0) {
       setDuration(3000);
-      setText("Guess the song in 3 seconds: 3 Points");
+      setText(used? "Guess the song in 3 seconds: 3 Points":"Guess the song in 3 seconds: 4 Points");
     } else if (current == 1) {
       setDuration(7000);
-      setText("Guess the song in 7 seconds: 2 Points");
+      setText(used? "Guess the song in 3 seconds: 2 Points":"Guess the song in 7 seconds: 3 Points");
     } else if (current == 2) {
       setDuration(15000);
-      setText("Guess the song in 15 seconds: 1 Points");
+      setText(used? "Guess the song in 3 seconds: 1 Points":"Guess the song in 15 seconds: 2 Points");
     } else {
       return;
     }
-  }, [current]);
+  }, [current, used]);
 
   //randomly selects a random song and picks new one when level is increased
-  useEffect(() => {
-    let arr = null;
-    if (genre === "all") {
-      arr = audioFile;
-    } else {
-      arr = audioFile.filter((item) => item.genre === genre);
-    }
+ useEffect(() => {
+  let arr = genre === "all" ? audioFile : audioFile.filter((item) => item.genre === genre);
 
-    if (arr.length > 0) {
-      const ran = Math.floor(Math.random() * arr.length);
-      setSong(arr[ran].audio);
-      setAnswer(arr[ran].name);
+  if (arr.length === 0) return;
+
+  let ran = Math.floor(Math.random() * arr.length);
+
+  if (arr.length > 1) {
+    while (ran === storeNum) {
+      ran = Math.floor(Math.random() * arr.length);
     }
-  }, [level, genre]);
+  }
+
+  setStoreNum(ran);
+  setSong(arr[ran].audio);
+  setAnswer(arr[ran].name);
+  setHint(arr[ran].singer)
+}, [level, genre]);
 
   //handle audio play as well as pause
   useEffect(() => {
@@ -80,13 +86,12 @@ function OnceUponATune(props) {
   //toggles the audio to play
   const handleAudio = () => {
     setToggle(true);
-    updateHide(4, true)
+    updateHide(4, true);
   };
   //toggles the audio to play and set the current stage of the song
   const handleTime = () => {
-   setToggle(true);
+    setToggle(true);
     setCurrent((prev) => prev + 1);
-    
   };
 
   return (
@@ -104,7 +109,11 @@ function OnceUponATune(props) {
             text={text}
             setCurrent={setCurrent}
             setLevel={setLevel}
-            hide={hide} updateHide={updateHide} 
+            hide={hide}
+            updateHide={updateHide}
+            hint={hint}
+            toggle={used}
+            setToggle={setUsed}
           />
         )}
         <img src={background} alt="Cartoon Tree" id="out_backdrop" />
