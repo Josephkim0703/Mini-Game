@@ -1,7 +1,7 @@
 import "/main.css";
 import { useEffect, useState, useRef } from "react";
 import CrackTheCode from "./games/crack_the_code/CrackTheCode.jsx";
-import OnceUponATune from "./games/once_upon_a_tune/OnceUponATune.jsx";
+import OnceUponATune from "./games/once_upon_a_tune/StuckInMyHead.jsx";
 function App() {
   const [currentGame, setCurrentGame] = useState(null);
   const [hide, setHide] = useState(true);
@@ -16,10 +16,10 @@ function App() {
       status: "active",
     },
     {
-      name: "Once Upon A Tune",
+      name: "Stuck In My Head",
       component: OnceUponATune,
       link: null,
-      thumbnail: "/assets/wallpapers/onceuponatune.jpg",
+      thumbnail: "/assets/wallpapers/stuckinmyhead.png",
       status: "active",
     },
     {

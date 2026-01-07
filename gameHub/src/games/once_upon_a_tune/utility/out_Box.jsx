@@ -1,17 +1,15 @@
 import { useEffect, useState, useRef } from "react";
-import { audioFile } from "./out_Audiofile.jsx";
 import "../css/out.css";
 function Box(props) {
   const [value, setValue] = useState("");
   const [point, setPoint] = useState(0);
   const [lives, setLives] = useState(0);
-
   const [heart, setHeart] = useState([
-    { state: "1", color: "rgb(0, 161, 0)" },
-    { state: "1", color: "rgb(0, 161, 0)" },
-    { state: "1", color: "rgb(0, 161, 0)" },
-    { state: "1", color: "rgb(0, 161, 0)" },
-    { state: "1", color: "rgb(0, 161, 0)" },
+    "/assets/onceuponatune/image/out_life0.png",
+    "/assets/onceuponatune/image/out_life1.png",
+    "/assets/onceuponatune/image/out_life2.png",
+    "/assets/onceuponatune/image/out_life3.png",
+    "/assets/onceuponatune/image/out_life4.png",
   ]);
 
   //handles answers
@@ -28,11 +26,9 @@ function Box(props) {
         setHeart((prev) => {
           const arr = [...prev];
           if (arr[prevLife]) {
-            arr[prevLife] = {
-              ...arr[prevLife],
-              color: "rgb(218, 0, 0)",
-              state: "0",
-            };
+            arr[
+              prevLife
+            ] = `/assets/onceuponatune/image/out_life_crushed${prevLife}.png`;
           }
           return arr;
         });
@@ -42,7 +38,6 @@ function Box(props) {
       props.setCurrent(0);
       props.setLevel((prev) => prev + 1);
       setValue("");
-
       if (props.current <= 0) {
         setPoint((prev) => (props.toggle ? prev + 3 : prev + 4));
       } else if (props.current === 1) {
@@ -71,63 +66,87 @@ function Box(props) {
   };
 
   const handleSkip = () => {
-    if(point > 0) {
+    if (point > 0) {
+      setPoint((prev) => prev - 1);
+      props.setCurrent(0);
+      props.setLevel((prev) => prev + 1);
+      setValue("");
+      props.updateHide(4, false);
+      props.updateHide(6, false);
+      props.setToggle(false);
+    }
+  };
 
-    
-    setPoint((prev) => prev - 1 );
+  const handleMenu = () => {
     props.setCurrent(0);
     props.setLevel((prev) => prev + 1);
-    setValue("");
-    props.updateHide(4, false);
     props.updateHide(6, false);
-    props.setToggle(false);
-    }
+    props.updateHide(4, false);
+    props.updateHide(2, true);
+    props.updateHide(3, true);
+    props.setBackground("/assets/onceuponatune/image/out_floor.png");
+    props.updateHide(0, false);
+    props.updateHide(1, false);
   };
   return (
     <>
       <div id="out_BoxWrapper">
         <div id="out_input">
-          <button type="button" onClick={props.handleAudio}>
-            Play
-          </button>
-          {props.hide[4] && (
-            <button type="button" onClick={props.handleTime}>
-              Increase Time
-            </button>
-          )}
-          <button type="button" onClick={handleSkip}>
-            Skip
-          </button>
-
-          <input
+          <div id="out_buttons">
+             <input
+             placeholder="CLICK TO TYPE..."
             id="out_inputBox"
             type="text"
             value={value}
             onChange={(e) => setValue(e.target.value)}
           />
+          <div id="input_left">
+          <button type="button" onClick={props.handleAudio} style={{backgroundColor: "green"}}>
+            PLAY
+          </button>
+          {props.hide[4] && (
+            <button type="button" onClick={props.handleTime} style={{fontSize: "12px"}}>
+              INCREASE TIME
+            </button>
+          )}
+          <button type="button" onClick={handleAnswer} style={{backgroundColor: "green"}}>
+            GUESS
+          </button>
+          
+          </div>
+         <div id="input_right">
           <button type="button" onClick={handleHint}>
-            Hint?
+            HINT
           </button>
-          <button type="button" onClick={handleAnswer}>
-            Guess
+          <button type="button" onClick={handleSkip}>
+            SKIP
           </button>
+          <button type="button" onClick={handleMenu} style={{backgroundColor: "black"}}>
+            MENU
+          </button>
+          </div>
+          </div>
+          <img src="/assets/onceuponatune/image/out_mixingtable.png" alt="" />
         </div>
-        <h1>{props.answer}</h1>
-        <h1>{props.text}</h1>
-        <h1>
-          Reach 15 Points to win <br />
-          Using a hint -1 point
-        </h1>
-        {props.hide[6] && <h1>{props.hint}</h1>}
-        <h1>Points: {point} / 15</h1>
+      
+          {props.answer}
         <div id="out_healthBar">
-          {heart.map((x, i) => (
-            <div
-              key={i}
-              className="out_attempts"
-              style={{ backgroundColor: x.color }}
-            ></div>
-          ))}
+          <h1>{props.text}</h1>
+          <h1>Points: {point} / 15</h1>
+          {props.hide[6] && (
+            <div id="hint">
+              <h1>{props.hint}</h1>
+            
+            </div>
+          )}
+
+          <div id="out_lives">
+            {heart.map((x, i) => (
+              <div key={i} className="out_attempts">
+                <img src={x} alt="beer can" />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </>

@@ -140,7 +140,7 @@ export const audioFile = [
      {
     name: "All the Stars",
     audio: "/assets/onceuponatune/sounds/out_music_24.mp3",
-    singer: "Kendrick Lamar & SZA",
+    singer: "Kendrick Lamar, SZA",
     genre: "r&b",
   },
     {
