@@ -9,7 +9,7 @@ export const audioFile = [
     name: "Where Have You Been",
     audio: "/assets/onceuponatune/sounds/out_music_2.mp3",
     singer: "Rihanna",
-    genre: "pop",
+    genre: ["pop", "edm"],
   },
   {
     name: "All Of The Lights",
@@ -177,7 +177,7 @@ export const audioFile = [
     name: "Wake me up",
     audio: "/assets/onceuponatune/sounds/out_music_30.mp3",
     singer: "Avicii",
-    genre: "pop",
+    genre: ["pop", "edm"],
   },
   {
     name: "Treat you better",
@@ -195,7 +195,7 @@ export const audioFile = [
     name: "Sorry for party rocking",
     audio: "/assets/onceuponatune/sounds/out_music_33.mp3",
     singer: "LMFAO",
-    genre: "pop",
+    genre: ["pop", "edm"],
   },
   {
     name: "Poker Face",
@@ -207,7 +207,7 @@ export const audioFile = [
     name: "Titanium",
     audio: "/assets/onceuponatune/sounds/out_music_35.mp3",
     singer: "David Guetta",
-    genre: "pop",
+    genre: ["pop", "edm"],
   },
    {
     name: "The Lazy Song",
@@ -215,8 +215,165 @@ export const audioFile = [
     singer: "Bruno Mars",
     genre: "pop",
   },
+    {
+    name: "The middle",
+    audio: "/assets/onceuponatune/sounds/out-music-37.mp3",
+    singer: "Zedd, Maren Morris",
+    genre: ["pop", "edm"],
+  },
+     {
+    name: "Clarity",
+    audio: "/assets/onceuponatune/sounds/out-music-38.mp3",
+    singer: "Zedd, Foxes",
+    genre: ["pop", "edm"],
+  },
+      {
+    name: "Stressed Out",
+    audio: "/assets/onceuponatune/sounds/out-music-39.mp3",
+    singer: "Twenty-one pilots",
+    genre: "pop",
+  },
+     {
+    name: "Timber",
+    audio: "/assets/onceuponatune/sounds/out-music-40.mp3",
+    singer: "Pitbull, Kesha",
+    genre: "pop",
+  },
+     {
+    name: "Moves Like jagger",
+    audio: "/assets/onceuponatune/sounds/out-music-41.mp3",
+    singer: "Maroon 5",
+    genre: "pop",
+  },
+     {
+    name: "Lean on",
+    audio: "/assets/onceuponatune/sounds/out-music-42.mp3",
+    singer: "Major Lazer",
+    genre: ["pop", "edm"],
+  },
+      {
+    name: "Faded",
+    audio: "/assets/onceuponatune/sounds/out-music-43.mp3",
+    singer: "Alan Walker",
+    genre: ["pop", "edm"],
+  },
+     {
+    name: "I want you to know",
+    audio: "/assets/onceuponatune/sounds/out-music-44.mp3",
+    singer: "Zedd, Selena Gomez",
+    genre: ["pop", "edm"],
+  },
+       {
+    name: "There's nothing holdin' me back",
+    audio: "/assets/onceuponatune/sounds/out-music-45.mp3",
+    singer: "Shawn Mendes",
+    genre: "pop",
+  },
+     {
+    name: "Stay with me",
+    audio: "/assets/onceuponatune/sounds/out-music-46.mp3",
+    singer: "Sam Smith",
+    genre: "pop",
+  },
+      {
+    name: "Let her go",
+    audio: "/assets/onceuponatune/sounds/out-music-47.mp3",
+    singer: "Passenger",
+    genre: "pop",
+  },
+     {
+    name: "Let me love you",
+    audio: "/assets/onceuponatune/sounds/out-music-48.mp3",
+    singer: "Justin Bieber, DJ snake",
+    genre: ["pop", "edm"],
+  },
+     {
+    name: "Cake by the ocean",
+    audio: "/assets/onceuponatune/sounds/out-music-49.mp3",
+    singer: "DNCE",
+    genre: "pop",
+  },
+     {
+    name: "The Nights",
+    audio: "/assets/onceuponatune/sounds/out_music_50.mp3",
+    singer: "Avicii",
+    genre: ["pop", "edm"],
+  },
+    {
+    name: "Outside",
+    audio: "/assets/onceuponatune/sounds/out_music_51.mp3",
+    singer: "Calvin Harris, Elley",
+    genre: ["pop", "edm"],
+  },
+      {
+    name: "Forever",
+    audio: "/assets/onceuponatune/sounds/out_music_52.mp3",
+    singer: "Gryffin, Elley",
+    genre: ["pop", "edm"],
+  },
+    {
+    name: "Light it up",
+    audio: "/assets/onceuponatune/sounds/out_music_53.mp3",
+    singer: "Major Lazer",
+    genre: ["pop", "edm"],
+  },
+       {
+    name: "Bangarang",
+    audio: "/assets/onceuponatune/sounds/out_music_54.mp3",
+    singer: "Skrillex",
+    genre: "edm",
+  },
+    {
+    name: "Red Lights",
+    audio: "/assets/onceuponatune/sounds/out_music_55.mp3",
+    singer: "Tiesto",
+    genre: ["pop", "edm"],
+  },
+      {
+    name: "Beautiful Now",
+    audio: "/assets/onceuponatune/sounds/out_music_56.mp3",
+    singer: "Zedd, Jon Bellion",
+    genre: ["pop", "edm"],
+  },
+    {
+    name: "Break free",
+    audio: "/assets/onceuponatune/sounds/out_music_57.mp3",
+    singer: "Ariana Grande, Zedd",
+    genre: ["pop", "edm"],
+  },
+      {
+    name: "Tie me down",
+    audio: "/assets/onceuponatune/sounds/out_music_58.mp3",
+    singer: "Gryffin, Elley",
+    genre: ["pop", "edm"],
+  },
+    {
+    name: "Cold water",
+    audio: "/assets/onceuponatune/sounds/out_music_59.mp3",
+    singer: "Major Lazer, Justin B",
+    genre: ["pop", "edm"],
+  },
+      {
+    name: "Don't look down",
+    audio: "/assets/onceuponatune/sounds/out_music_60.mp3",
+    singer: "Martin Garrix",
+    genre: ["pop", "edm"],
+  },
+    {
+    name: "Don't you worry child",
+    audio: "/assets/onceuponatune/sounds/out_music_61.mp3",
+    singer: "Swedish House Mafia",
+    genre: ["pop", "edm"],
+  },
+      {
+    name: "Where are you now",
+    audio: "/assets/onceuponatune/sounds/out_music_62.mp3",
+    singer: "Skrillex, Diplo",
+    genre: ["pop", "edm"],
+  },
 ];
 
 //rap: 6
 //r&b: 17
-//pop: 13
+//pop: 38
+//edm: 23

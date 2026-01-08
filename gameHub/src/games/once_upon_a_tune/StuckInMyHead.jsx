@@ -5,7 +5,9 @@ import StartBox from "./utility/out_StartBox.jsx";
 import { audioFile } from "./utility/out_Audiofile.jsx";
 function StuckInMyHead(props) {
   const [hide, setHide] = useState(Array(10).fill(false));
-  const [background, setBackground] = useState('/assets/onceuponatune/image/out_background_1.jpg');
+  const [background, setBackground] = useState(
+    "/assets/onceuponatune/image/out_background_1.jpg"
+  );
   const [song, setSong] = useState(null);
   const [answer, setAnswer] = useState(null);
   const [current, setCurrent] = useState(0);
@@ -15,7 +17,7 @@ function StuckInMyHead(props) {
   const [toggle, setToggle] = useState(false);
   const [genre, setGenre] = useState("");
   const [hint, setHint] = useState("");
-  const [storeNum, setStoreNum] = useState(null);
+  const [storeNum, setStoreNum] = useState([]);
   const [used, setUsed] = useState(false);
   function updateHide(index, value) {
     setHide((prev) => {
@@ -29,37 +31,81 @@ function StuckInMyHead(props) {
   useEffect(() => {
     if (current <= 0) {
       setDuration(3000);
-      setText(used? <span>Guess the song in <b>3 seconds</b>: 3 Points</span> :"Guess the song in 3 seconds: 4 Points");
+      setText(
+        used ? (
+          <span>
+            Guess the song in <b>3 seconds</b>: 3 Points
+          </span>
+        ) : (
+          "Guess the song in 3 seconds: 4 Points"
+        )
+      );
     } else if (current == 1) {
       setDuration(7000);
-      setText(used? <span>Guess the song in <b>7 seconds</b>: 2 Points</span> :"Guess the song in 7 seconds: 3 Points");
+      setText(
+        used ? (
+          <span>
+            Guess the song in <b>7 seconds</b>: 2 Points
+          </span>
+        ) : (
+          "Guess the song in 7 seconds: 3 Points"
+        )
+      );
     } else if (current == 2) {
       setDuration(15000);
-      setText(used? <span>Guess the song in <b>15 seconds</b>: 1 Points</span> :"Guess the song in 15 seconds: 2 Points");
+      setText(
+        used ? (
+          <span>
+            Guess the song in <b>15 seconds</b>: 1 Points
+          </span>
+        ) : (
+          "Guess the song in 15 seconds: 2 Points"
+        )
+      );
     } else {
       return;
     }
   }, [current, used]);
 
   //randomly selects a random song and picks new one when level is increased
- useEffect(() => {
-  let arr = genre === "all" ? audioFile : audioFile.filter((item) => item.genre === genre);
+useEffect(() => {
+ let arr =
+  genre === "all"
+    ? audioFile
+    : audioFile.filter(item =>
+        Array.isArray(item.genre)
+          ? item.genre.includes(genre)   // OR logic
+          : item.genre === genre
+      );
 
   if (arr.length === 0) return;
 
-  let ran = Math.floor(Math.random() * arr.length);
-
-  if (arr.length > 1) {
-    while (ran === storeNum) {
-      ran = Math.floor(Math.random() * arr.length);
-    }
+  if (storeNum.length >= arr.length) {
+    setStoreNum([]);
+    return;
   }
 
-  setStoreNum(ran);
+  let ran;
+
+  if (arr.length > 1) {
+    do {
+      ran = Math.floor(Math.random() * arr.length);
+    } while (storeNum.includes(ran));
+  } else {
+    ran = 0;
+  }
+
+  setStoreNum(prev => [...prev, ran]);
+
   setSong(arr[ran].audio);
   setAnswer(arr[ran].name);
-  setHint(arr[ran].singer)
-}, [level, genre]);
+  setHint(arr[ran].singer);
+  }, [level, genre]);
+
+  //when genre changes empty used songs array
+  useEffect(() => {
+  setStoreNum([]);
+}, [genre]);
 
   //handle audio play as well as pause
   useEffect(() => {
@@ -98,7 +144,12 @@ function StuckInMyHead(props) {
     <>
       <div id="tuneWrapper">
         {!hide[0] && (
-          <StartBox hide={hide} updateHide={updateHide} setGenre={setGenre} setBackground={setBackground}/>
+          <StartBox
+            hide={hide}
+            updateHide={updateHide}
+            setGenre={setGenre}
+            setBackground={setBackground}
+          />
         )}
         {hide[1] && (
           <Box

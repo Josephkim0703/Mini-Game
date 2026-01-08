@@ -93,53 +93,65 @@ function Box(props) {
       <div id="out_BoxWrapper">
         <div id="out_input">
           <div id="out_buttons">
-             <input
-             placeholder="CLICK TO TYPE..."
-            id="out_inputBox"
-            type="text"
-            value={value}
-            onChange={(e) => setValue(e.target.value)}
-          />
-          <div id="input_left">
-          <button type="button" onClick={props.handleAudio} style={{backgroundColor: "green"}}>
-            PLAY
-          </button>
-          {props.hide[4] && (
-            <button type="button" onClick={props.handleTime} style={{fontSize: "12px"}}>
-              INCREASE TIME
-            </button>
-          )}
-          <button type="button" onClick={handleAnswer} style={{backgroundColor: "green"}}>
-            GUESS
-          </button>
-          
-          </div>
-         <div id="input_right">
-          <button type="button" onClick={handleHint}>
-            HINT
-          </button>
-          <button type="button" onClick={handleSkip}>
-            SKIP
-          </button>
-          <button type="button" onClick={handleMenu} style={{backgroundColor: "black"}}>
-            MENU
-          </button>
-          </div>
+            <input
+              placeholder="CLICK TO TYPE..."
+              id="out_inputBox"
+              type="text"
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+            />
+            <div id="input_left">
+              <button
+                type="button"
+                onClick={props.handleAudio}
+                style={{ backgroundColor: "green" }}
+              >
+                PLAY
+              </button>
+              {props.hide[4] && (
+                <button
+                  type="button"
+                  onClick={props.handleTime}
+                  style={{ fontSize: "12px" }}
+                >
+                  INCREASE TIME
+                </button>
+              )}
+              <button
+                type="button"
+                onClick={handleAnswer}
+                style={{ backgroundColor: "green" }}
+              >
+                GUESS
+              </button>
+            </div>
+            <div id="input_right">
+              <button type="button" onClick={handleHint}>
+                HINT
+              </button>
+              <button type="button" onClick={handleSkip}>
+                SKIP
+              </button>
+              <button
+                type="button"
+                onClick={handleMenu}
+                style={{ backgroundColor: "black" }}
+              >
+                MENU
+              </button>
+            </div>
           </div>
           <img src="/assets/onceuponatune/image/out_mixingtable.png" alt="" />
         </div>
-      
-          {props.answer}
+     {props.answer}
         <div id="out_healthBar">
           <h1>{props.text}</h1>
           <h1>Points: {point} / 15</h1>
           {props.hide[6] && (
             <div id="hint">
               <h1>{props.hint}</h1>
-            
             </div>
           )}
-
           <div id="out_lives">
             {heart.map((x, i) => (
               <div key={i} className="out_attempts">

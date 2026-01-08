@@ -36,7 +36,7 @@ export const initialScript = [
   {
     text: (
       <span style={{ color: "blue" }}>
-        WHAT THE F*CK! No one said anything about a bomb!
+        WHAT THE ****! No one said anything about a bomb!
       </span>
     ),
     time: 3000,

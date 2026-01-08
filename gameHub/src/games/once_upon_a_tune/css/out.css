@@ -13,7 +13,6 @@
   src: url("/font/pen.ttf") format("truetype");
 }
 
-
 #out_backdrop {
   position: absolute;
   top: -100px;
@@ -22,6 +21,8 @@
   height: calc(100% + 250px);
   z-index: -2;
   filter: blur(6px);
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 #tuneWrapper {
@@ -41,17 +42,20 @@
   position: relative;
   margin-bottom: 2rem;
 }
+
 #out_input img {
   width: 60rem;
   margin-left: auto;
   margin-right: auto;
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 #out_input #out_buttons {
   position: absolute;
 }
 
-#out_input #out_buttons button{
+#out_input #out_buttons button {
   border: 5px groove rgb(160, 0, 0);
   margin: 5px;
   width: 4.5rem;
@@ -59,15 +63,15 @@
   color: white;
   background-color: rgb(155, 0, 0);
   font-size: 20px;
-   font-family: fantasy;
+  font-family: fantasy;
 }
 
-#out_input #out_buttons button:hover{
+#out_input #out_buttons button:hover {
   transform: scale(1);
   border: 4px groove rgb(255, 0, 0);
 }
 
-#out_input #out_buttons button:active{
+#out_input #out_buttons button:active {
   transform: scale(0.95);
   border: 4px groove rgb(255, 0, 0);
 }
@@ -174,6 +178,8 @@
   margin: 0;
   padding: 0;
   transition: transform 0.2s;
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 #out_BoxWrapper .out_attempts img:hover {
@@ -211,6 +217,8 @@
   position: absolute;
   top: 5rem;
   width: 50rem;
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 #out_instruction img:nth-child(1) {
@@ -218,6 +226,8 @@
   position: absolute;
   top: -4.5rem;
   left: -0.5rem;
+  -webkit-user-drag: none;
+  user-select: none;
 }
 
 #out_instruction button {
@@ -262,4 +272,6 @@
 
 #out_option_buttons img {
   width: 20rem;
+  -webkit-user-drag: none;
+  user-select: none;
 }
