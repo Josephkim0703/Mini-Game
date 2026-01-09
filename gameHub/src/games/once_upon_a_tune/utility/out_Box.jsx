@@ -2,8 +2,6 @@ import { useEffect, useState, useRef } from "react";
 import "../css/out.css";
 function Box(props) {
   const [value, setValue] = useState("");
-  const [point, setPoint] = useState(0);
-  const [lives, setLives] = useState(0);
   const [heart, setHeart] = useState([
     "/assets/onceuponatune/image/out_life0.png",
     "/assets/onceuponatune/image/out_life1.png",
@@ -11,7 +9,6 @@ function Box(props) {
     "/assets/onceuponatune/image/out_life3.png",
     "/assets/onceuponatune/image/out_life4.png",
   ]);
-
   //handles answers
   const handleAnswer = () => {
     if (!value) return;
@@ -22,7 +19,7 @@ function Box(props) {
     if (modifiedValue !== correctAnswer) {
       setValue("");
 
-      setLives((prevLife) => {
+      props.setLives((prevLife) => {
         setHeart((prev) => {
           const arr = [...prev];
           if (arr[prevLife]) {
@@ -39,11 +36,11 @@ function Box(props) {
       props.setLevel((prev) => prev + 1);
       setValue("");
       if (props.current <= 0) {
-        setPoint((prev) => (props.toggle ? prev + 3 : prev + 4));
+        props.setPoint((prev) => (props.toggle ? prev + 3 : prev + 4));
       } else if (props.current === 1) {
-        setPoint((prev) => (props.toggle ? prev + 2 : prev + 3));
+        props.setPoint((prev) => (props.toggle ? prev + 2 : prev + 3));
       } else {
-        setPoint((prev) => (props.toggle ? prev + 1 : prev + 2));
+        props.setPoint((prev) => (props.toggle ? prev + 1 : prev + 2));
       }
       props.updateHide(4, false);
       props.updateHide(6, false);
@@ -53,12 +50,16 @@ function Box(props) {
 
   //handle what happens if you lose
   useEffect(() => {
-    if (lives >= 5) {
-      console.log("lose");
-    } else if (point >= 15) {
-      console.log("Win");
+    if (props.lives >= 5) {
+      props.updateHide(7, true);
+      props.updateHide(1, false);
+      props.setStatus("lose");
+    } else if (props.point >= 15) {
+      props.updateHide(7, true);
+      props.updateHide(1, false);
+      props.setStatus("win");
     }
-  }, [lives, point]);
+  }, [props.lives, props.point]);
 
   const handleHint = () => {
     props.updateHide(6, true);
@@ -66,8 +67,8 @@ function Box(props) {
   };
 
   const handleSkip = () => {
-    if (point > 0) {
-      setPoint((prev) => prev - 1);
+    if (props.point > 0) {
+      props.setPoint((prev) => prev - 1);
       props.setCurrent(0);
       props.setLevel((prev) => prev + 1);
       setValue("");
@@ -77,17 +78,7 @@ function Box(props) {
     }
   };
 
-  const handleMenu = () => {
-    props.setCurrent(0);
-    props.setLevel((prev) => prev + 1);
-    props.updateHide(6, false);
-    props.updateHide(4, false);
-    props.updateHide(2, true);
-    props.updateHide(3, true);
-    props.setBackground("/assets/onceuponatune/image/out_floor.png");
-    props.updateHide(0, false);
-    props.updateHide(1, false);
-  };
+
   return (
     <>
       <div id="out_BoxWrapper">
@@ -134,7 +125,7 @@ function Box(props) {
               </button>
               <button
                 type="button"
-                onClick={handleMenu}
+                onClick={props.handleMenu}
                 style={{ backgroundColor: "black" }}
               >
                 MENU
@@ -143,10 +134,10 @@ function Box(props) {
           </div>
           <img src="/assets/onceuponatune/image/out_mixingtable.png" alt="" />
         </div>
-     {props.answer}
+        {props.answer}
         <div id="out_healthBar">
           <h1>{props.text}</h1>
-          <h1>Points: {point} / 15</h1>
+          <h1>Points: {props.point} / 15</h1>
           {props.hide[6] && (
             <div id="hint">
               <h1>{props.hint}</h1>

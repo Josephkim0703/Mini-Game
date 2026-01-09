@@ -45,6 +45,9 @@ function out_StartBox(props) {
             <button type="button" onClick={() => handleGenre("rap")}>
               <img src="/assets/onceuponatune/image/out_cig.png" alt="cigarette bud" />
             </button>
+            <button type="button" onClick={() => handleGenre("edm")}>
+              <img src="/assets/onceuponatune/image/out_candy.png" alt="candy" />
+            </button>
           </div>
         )}
       </div>

@@ -13,6 +13,11 @@
   src: url("/font/pen.ttf") format("truetype");
 }
 
+@font-face {
+  font-family: "drunk";
+  src: url("/font/grunge.ttf") format("truetype");
+}
+
 #out_backdrop {
   position: absolute;
   top: -100px;
@@ -248,30 +253,52 @@
 }
 
 #out_option_buttons button {
-  width: 20rem;
-  margin: 2rem;
+  width: 15rem;
+  margin: 2rem 4rem;
   background-color: transparent;
   border: none;
+  transition: transform 0.1s;
 }
 
 #out_option_buttons button:nth-child(even) {
-  transform: translateY(10rem) rotate(-4deg);
+  transform: rotate(-4deg);
 }
 
 #out_option_buttons button:nth-child(odd) {
-  transform: translateY(-10rem) rotate(4deg);
+  transform: rotate(4deg);
 }
 
 #out_option_buttons button:nth-child(even):hover {
-  transform: translateY(10rem) scale(1.3) rotate(10deg);
+  transform:  scale(1.3) rotate(10deg);
 }
 
 #out_option_buttons button:nth-child(odd):hover {
-  transform: translateY(-10rem) scale(1.3) rotate(-10deg);
+  transform:  scale(1.3) rotate(-10deg);
 }
 
 #out_option_buttons img {
   width: 20rem;
   -webkit-user-drag: none;
   user-select: none;
+}
+
+#out_endCredit h1{
+  color: white;
+  font-family: "drunk";
+  font-size: 3rem;
+  font-weight: 100;
+}
+
+#out_endCredit button{
+  background-color: transparent;
+  border: none;
+  transition: transform 0.1s;
+}
+
+#out_endCredit button:hover{
+  transform: scale(1.1) ;
+}
+
+#out_endCredit img{
+  width: 15rem;
 }

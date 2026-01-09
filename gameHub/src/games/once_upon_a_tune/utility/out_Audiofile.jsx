@@ -35,7 +35,7 @@ export const audioFile = [
     singer: "Kanye West",
     genre: "rap",
   },
-    {
+  {
     name: "Empire state of mind",
     audio: "/assets/onceuponatune/sounds/out_music_7.mp3",
     singer: "Jay Z",
@@ -47,25 +47,25 @@ export const audioFile = [
     singer: "Eminem",
     genre: "rap",
   },
-    {
+  {
     name: "Sandra's rose",
     audio: "/assets/onceuponatune/sounds/out_music_9.mp3",
     singer: "Drake",
     genre: "rap",
   },
-    {
+  {
     name: "Redbone",
     audio: "/assets/onceuponatune/sounds/out_music_10.mp3",
     singer: "Childish Gambino",
     genre: "r&b",
   },
-    {
+  {
     name: "No Diggity",
     audio: "/assets/onceuponatune/sounds/out_music_11.mp3",
     singer: "Backstreet Boys",
     genre: "r&b",
   },
-    {
+  {
     name: "California Love",
     audio: "/assets/onceuponatune/sounds/out_music_12.mp3",
     singer: "2pac",
@@ -77,25 +77,25 @@ export const audioFile = [
     singer: "Alicia Keys",
     genre: "r&b",
   },
-    {
+  {
     name: "Irreplacable",
     audio: "/assets/onceuponatune/sounds/out_music_14.mp3",
     singer: "Beyonce",
     genre: "r&b",
   },
-    {
+  {
     name: "Crazy In love",
     audio: "/assets/onceuponatune/sounds/out_music_15.mp3",
     singer: "Beyonce",
     genre: "r&b",
   },
-    {
+  {
     name: "Versace on the floor",
     audio: "/assets/onceuponatune/sounds/out_music_16.mp3",
     singer: "Bruno Mars",
     genre: "pop",
   },
-    {
+  {
     name: "Get you",
     audio: "/assets/onceuponatune/sounds/out_music_17.mp3",
     singer: "Daniel Caesar",
@@ -113,67 +113,67 @@ export const audioFile = [
     singer: "Bryson Tiller",
     genre: "r&b",
   },
-    {
+  {
     name: "All of me",
     audio: "/assets/onceuponatune/sounds/out_music_20.mp3",
     singer: "John Legend",
     genre: "r&b",
   },
-    {
+  {
     name: "No Scrubs",
     audio: "/assets/onceuponatune/sounds/out_music_21.mp3",
     singer: "TLC",
     genre: "r&b",
   },
-    {
+  {
     name: "So Sick",
     audio: "/assets/onceuponatune/sounds/out_music_22.mp3",
     singer: "Ne-Yo",
     genre: "r&b",
   },
-    {
+  {
     name: "For Tonight",
     audio: "/assets/onceuponatune/sounds/out_music_23.mp3",
     singer: "Giveon",
     genre: "r&b",
   },
-     {
+  {
     name: "All the Stars",
     audio: "/assets/onceuponatune/sounds/out_music_24.mp3",
     singer: "Kendrick Lamar, SZA",
     genre: "r&b",
   },
-    {
+  {
     name: "Miss Independent",
     audio: "/assets/onceuponatune/sounds/out_music_25.mp3",
     singer: "Ne-Yo",
     genre: "r&b",
   },
-    {
+  {
     name: "Dilemma",
     audio: "/assets/onceuponatune/sounds/out_music_26.mp3",
     singer: "Nelly",
     genre: "r&b",
   },
-    {
+  {
     name: "Talk",
     audio: "/assets/onceuponatune/sounds/out_music_27.mp3",
     singer: "Khalid",
     genre: "r&b",
   },
-   {
+  {
     name: "Set Fire to the Rain",
     audio: "/assets/onceuponatune/sounds/out_music_28.mp3",
     singer: "Adele",
     genre: "pop",
   },
-   {
+  {
     name: "Sugar",
     audio: "/assets/onceuponatune/sounds/out_music_29.mp3",
     singer: "Maroon 5",
     genre: "pop",
   },
-   {
+  {
     name: "Wake me up",
     audio: "/assets/onceuponatune/sounds/out_music_30.mp3",
     singer: "Avicii",
@@ -185,13 +185,13 @@ export const audioFile = [
     singer: "Shawn Mendes",
     genre: "pop",
   },
-   {
+  {
     name: "Rude",
     audio: "/assets/onceuponatune/sounds/out_music_32.mp3",
     singer: "MAGIC",
     genre: "pop",
   },
-   {
+  {
     name: "Sorry for party rocking",
     audio: "/assets/onceuponatune/sounds/out_music_33.mp3",
     singer: "LMFAO",
@@ -203,177 +203,239 @@ export const audioFile = [
     singer: "Lady Gaga",
     genre: "pop",
   },
-   {
+  {
     name: "Titanium",
     audio: "/assets/onceuponatune/sounds/out_music_35.mp3",
     singer: "David Guetta",
     genre: ["pop", "edm"],
   },
-   {
+  {
     name: "The Lazy Song",
     audio: "/assets/onceuponatune/sounds/out_music_36.mp3",
     singer: "Bruno Mars",
     genre: "pop",
   },
-    {
+  {
     name: "The middle",
     audio: "/assets/onceuponatune/sounds/out-music-37.mp3",
     singer: "Zedd, Maren Morris",
     genre: ["pop", "edm"],
   },
-     {
+  {
     name: "Clarity",
     audio: "/assets/onceuponatune/sounds/out-music-38.mp3",
     singer: "Zedd, Foxes",
     genre: ["pop", "edm"],
   },
-      {
+  {
     name: "Stressed Out",
     audio: "/assets/onceuponatune/sounds/out-music-39.mp3",
     singer: "Twenty-one pilots",
     genre: "pop",
   },
-     {
+  {
     name: "Timber",
     audio: "/assets/onceuponatune/sounds/out-music-40.mp3",
     singer: "Pitbull, Kesha",
     genre: "pop",
   },
-     {
+  {
     name: "Moves Like jagger",
     audio: "/assets/onceuponatune/sounds/out-music-41.mp3",
     singer: "Maroon 5",
     genre: "pop",
   },
-     {
+  {
     name: "Lean on",
     audio: "/assets/onceuponatune/sounds/out-music-42.mp3",
     singer: "Major Lazer",
     genre: ["pop", "edm"],
   },
-      {
+  {
     name: "Faded",
     audio: "/assets/onceuponatune/sounds/out-music-43.mp3",
     singer: "Alan Walker",
     genre: ["pop", "edm"],
   },
-     {
+  {
     name: "I want you to know",
     audio: "/assets/onceuponatune/sounds/out-music-44.mp3",
     singer: "Zedd, Selena Gomez",
     genre: ["pop", "edm"],
   },
-       {
+  {
     name: "There's nothing holdin' me back",
     audio: "/assets/onceuponatune/sounds/out-music-45.mp3",
     singer: "Shawn Mendes",
     genre: "pop",
   },
-     {
+  {
     name: "Stay with me",
     audio: "/assets/onceuponatune/sounds/out-music-46.mp3",
     singer: "Sam Smith",
     genre: "pop",
   },
-      {
+  {
     name: "Let her go",
     audio: "/assets/onceuponatune/sounds/out-music-47.mp3",
     singer: "Passenger",
     genre: "pop",
   },
-     {
+  {
     name: "Let me love you",
     audio: "/assets/onceuponatune/sounds/out-music-48.mp3",
     singer: "Justin Bieber, DJ snake",
     genre: ["pop", "edm"],
   },
-     {
+  {
     name: "Cake by the ocean",
     audio: "/assets/onceuponatune/sounds/out-music-49.mp3",
     singer: "DNCE",
     genre: "pop",
   },
-     {
+  {
     name: "The Nights",
     audio: "/assets/onceuponatune/sounds/out_music_50.mp3",
     singer: "Avicii",
     genre: ["pop", "edm"],
   },
-    {
+  {
     name: "Outside",
     audio: "/assets/onceuponatune/sounds/out_music_51.mp3",
     singer: "Calvin Harris, Elley",
     genre: ["pop", "edm"],
   },
-      {
+  {
     name: "Forever",
     audio: "/assets/onceuponatune/sounds/out_music_52.mp3",
     singer: "Gryffin, Elley",
     genre: ["pop", "edm"],
   },
-    {
+  {
     name: "Light it up",
     audio: "/assets/onceuponatune/sounds/out_music_53.mp3",
     singer: "Major Lazer",
     genre: ["pop", "edm"],
   },
-       {
+  {
     name: "Bangarang",
     audio: "/assets/onceuponatune/sounds/out_music_54.mp3",
     singer: "Skrillex",
     genre: "edm",
   },
-    {
+  {
     name: "Red Lights",
     audio: "/assets/onceuponatune/sounds/out_music_55.mp3",
     singer: "Tiesto",
     genre: ["pop", "edm"],
   },
-      {
+  {
     name: "Beautiful Now",
     audio: "/assets/onceuponatune/sounds/out_music_56.mp3",
     singer: "Zedd, Jon Bellion",
     genre: ["pop", "edm"],
   },
-    {
+  {
     name: "Break free",
     audio: "/assets/onceuponatune/sounds/out_music_57.mp3",
     singer: "Ariana Grande, Zedd",
     genre: ["pop", "edm"],
   },
-      {
+  {
     name: "Tie me down",
     audio: "/assets/onceuponatune/sounds/out_music_58.mp3",
     singer: "Gryffin, Elley",
     genre: ["pop", "edm"],
   },
-    {
+  {
     name: "Cold water",
     audio: "/assets/onceuponatune/sounds/out_music_59.mp3",
     singer: "Major Lazer, Justin B",
     genre: ["pop", "edm"],
   },
-      {
+  {
     name: "Don't look down",
     audio: "/assets/onceuponatune/sounds/out_music_60.mp3",
     singer: "Martin Garrix",
     genre: ["pop", "edm"],
   },
-    {
+  {
     name: "Don't you worry child",
     audio: "/assets/onceuponatune/sounds/out_music_61.mp3",
     singer: "Swedish House Mafia",
     genre: ["pop", "edm"],
   },
-      {
+  {
     name: "Where are you now",
     audio: "/assets/onceuponatune/sounds/out_music_62.mp3",
     singer: "Skrillex, Diplo",
     genre: ["pop", "edm"],
   },
+
+  {
+    name: "Smack that",
+    audio: "/assets/onceuponatune/sounds/out_music_63.mp3",
+    singer: "Akon",
+    genre: "r&b",
+  },
+  {
+    name: "I know what you want",
+    audio: "/assets/onceuponatune/sounds/out_music_64.mp3",
+    singer: "Busta Rhymes",
+    genre: "r&b",
+  },
+  {
+    name: "Go crazy",
+    audio: "/assets/onceuponatune/sounds/out_music_65.mp3",
+    singer: "Chris Brown, Young Thug",
+    genre: "r&b",
+  },
+  {
+    name: "Let me love you",
+    audio: "/assets/onceuponatune/sounds/out_music_66.mp3",
+    singer: "Mario",
+    genre: "r&b",
+  },
+  {
+    name: "Say my name",
+    audio: "/assets/onceuponatune/sounds/out_music_67.mp3",
+    singer: "Destiny's Child",
+    genre: "r&b",
+  },
+  {
+    name: "Leave the door open",
+    audio: "/assets/onceuponatune/sounds/out_music_68.mp3",
+    singer: "Bruno Mars",
+    genre: "r&b",
+  },
+
+  {
+    name: "Buy u a drank",
+    audio: "/assets/onceuponatune/sounds/out_music_69.mp3",
+    singer: "T-pain",
+    genre: "r&b",
+  },
+  {
+    name: "Love",
+    audio: "/assets/onceuponatune/sounds/out_music_70.mp3",
+    singer: "Keyshia Cole",
+    genre: "r&b",
+  },
+  {
+    name: "Sure thing",
+    audio: "/assets/onceuponatune/sounds/out_music_71.mp3",
+    singer: "Miguel",
+    genre: "r&b",
+  },
+  {
+    name: "Can't Feel my face",
+    audio: "/assets/onceuponatune/sounds/out_music_72.mp3",
+    singer: "The Weeknd",
+    genre: "r&b",
+  },
 ];
 
 //rap: 6
-//r&b: 17
+//r&b: 27
 //pop: 38
 //edm: 23

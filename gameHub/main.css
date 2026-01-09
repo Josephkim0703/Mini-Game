@@ -1,6 +1,6 @@
 body {
   animation: colorChange 100s ease-in-out infinite;
-  overflow-x: hidden;
+  overflow: hidden;
   font-family: monospace;
 }
 
