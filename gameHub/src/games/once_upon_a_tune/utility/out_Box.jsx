@@ -134,7 +134,6 @@ function Box(props) {
           </div>
           <img src="/assets/onceuponatune/image/out_mixingtable.png" alt="" />
         </div>
-        {props.answer}
         <div id="out_healthBar">
           <h1>{props.text}</h1>
           <h1>Points: {props.point} / 15</h1>
