@@ -3,23 +3,18 @@ import { useState } from "react";
 import CrackTheCode from "./games/crack_the_code/CrackTheCode.jsx";
 import OnceUponATune from "./games/once_upon_a_tune/StuckInMyHead.jsx";
 
-const DUST_PARTICLES = Array.from({ length: 22 }, (_, i) => ({
-  id: i,
-  left: `${4 + (i * 37 + i * i * 13) % 92}%`,
-  size: `${1.5 + (i * 7) % 3}px`,
-  dur: `${12 + (i * 11) % 16}s`,
-  delay: `${(i * 1.7) % 14}s`,
-  drift: `${(i % 2 === 0 ? 1 : -1) * (10 + (i * 9) % 30)}px`,
-}));
+
 
 function App() {
   const [currentGame, setCurrentGame] = useState(null);
   const [hide, setHide] = useState(true);
   const [muted, setMuted] = useState(false);
+  const [dark, setDark] = useState(false);
 
   const games = [
     {
       name: "Crack The Code",
+      theme: "secret",
       description: "Defuse the bomb before time runs out — and don't let the lights stay off.",
       component: CrackTheCode,
       link: null,
@@ -28,6 +23,7 @@ function App() {
     },
     {
       name: "Stuck In My Head",
+      theme: "groove",
       description: "An earworm guessing game. How well do you really know your tunes?",
       component: OnceUponATune,
       link: null,
@@ -36,7 +32,8 @@ function App() {
     },
     {
       name: "Devil Fruit Encyclopedia",
-      description: "A catalogue of every devil fruit on the Grand Line.",
+      theme: "wanted",
+      description: "Explore the world of Devil Fruits and their powers.",
       component: () => <div>Off Site</div>,
       link: "https://josephkim0703.github.io/devil-fruit-encyclopedia/",
       thumbnail: "/assets/wallpapers/onepiece.jpg",
@@ -44,6 +41,7 @@ function App() {
     },
     {
       name: "Domain Expansion",
+      theme: "cursed",
       description: "Step into the domain — a Jujutsu Kaisen tribute.",
       component: () => <div>Off Site</div>,
       link: "https://josephkim0703.github.io/Domain-Expansion/",
@@ -52,6 +50,7 @@ function App() {
     },
     {
       name: "Coming Soon",
+      theme: "soon",
       description: "This page hasn't been written yet…",
       component: () => <div>Coming Soon!</div>,
       thumbnail: "/assets/wallpapers/construction.png",
@@ -59,6 +58,7 @@ function App() {
     },
     {
       name: "Coming Soon",
+      theme: "soon",
       description: "This page hasn't been written yet…",
       component: () => <div>Coming Soon!</div>,
       thumbnail: "/assets/wallpapers/construction.png",
@@ -86,33 +86,37 @@ function App() {
     currentGame !== null ? games[currentGame].component : null;
 
   return (
-    <div id="mainWrapper">
-      <div className="library-glow" />
+    <div id="mainWrapper" className={dark ? "dark-mode" : ""}>
+      {hide && <div className="library-glow" />}
 
-      {DUST_PARTICLES.map((p) => (
-        <div
-          key={p.id}
-          className="dust-particle"
-          style={{
-            left: p.left,
-            "--size": p.size,
-            "--dur": p.dur,
-            "--delay": p.delay,
-            "--drift": p.drift,
-          }}
-        />
-      ))}
+      {hide && (
+        <button
+          type="button"
+          id="darkToggle"
+          onClick={() => setDark((prev) => !prev)}
+          aria-label="Toggle dark mode"
+        >
+          {dark ? "☀️" : "🌙"}
+        </button>
+      )}
+
+
 
       {hide && (
         <div id="homePage">
           <header>
             <h1>
-              Kimonsters Library
+              <span className="title-magic">
+                {"Kimonsters Library".split("").map((ch, i) => (
+                  <span key={i} className="title-letter">
+                    {ch === " " ? " " : ch}
+                  </span>
+                ))}
+              </span>
               <span className="header-ornament">
-                ✦ &nbsp; A Collection of Curios &nbsp; ✦
+                games, experiments, and other things I made instead of sleeping
               </span>
             </h1>
-            <h2>step inside &mdash; the shelves are always open</h2>
           </header>
 
           <div className="library-divider">⬥ ⬦ ⬥</div>
@@ -120,7 +124,7 @@ function App() {
           <main>
             {games.map((game, index) => (
               <a href={game.link} key={index}>
-                <div className="plate">
+                <div className={`plate plate--${game.theme}`}>
                   <button onClick={() => handleClick(index)}>
                     <img src={game.thumbnail} alt={game.name} />
                   </button>
