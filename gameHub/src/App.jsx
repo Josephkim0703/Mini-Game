@@ -1,7 +1,17 @@
 import "/main.css";
-import { useEffect, useState, useRef } from "react";
+import { useState } from "react";
 import CrackTheCode from "./games/crack_the_code/CrackTheCode.jsx";
 import OnceUponATune from "./games/once_upon_a_tune/StuckInMyHead.jsx";
+
+const DUST_PARTICLES = Array.from({ length: 22 }, (_, i) => ({
+  id: i,
+  left: `${4 + (i * 37 + i * i * 13) % 92}%`,
+  size: `${1.5 + (i * 7) % 3}px`,
+  dur: `${12 + (i * 11) % 16}s`,
+  delay: `${(i * 1.7) % 14}s`,
+  drift: `${(i % 2 === 0 ? 1 : -1) * (10 + (i * 9) % 30)}px`,
+}));
+
 function App() {
   const [currentGame, setCurrentGame] = useState(null);
   const [hide, setHide] = useState(true);
@@ -71,12 +81,35 @@ function App() {
 
   return (
     <div id="mainWrapper">
+      {/* Ambient candle glow layer */}
+      <div className="library-glow" />
+
+      {/* Floating dust motes */}
+      {DUST_PARTICLES.map((p) => (
+        <div
+          key={p.id}
+          className="dust-particle"
+          style={{
+            left: p.left,
+            "--size": p.size,
+            "--dur": p.dur,
+            "--delay": p.delay,
+            "--drift": p.drift,
+          }}
+        />
+      ))}
+
       {hide && (
         <div id="homePage">
           <header>
-            <h1>Kimonsters Laboratory</h1>
-            <h2></h2>
+            <h1>
+              Kimonsters Library
+              <span className="header-ornament">✦ &nbsp; A Collection of Curios &nbsp; ✦</span>
+            </h1>
+            <h2>step inside &mdash; the shelves are always open</h2>
           </header>
+
+          <div className="library-divider">⬥ ⬦ ⬥</div>
 
           <main>
             {games.map((game, index) => (
@@ -93,18 +126,26 @@ function App() {
           </footer>
         </div>
       )}
+
       {!hide && currentGame !== null && (
         <div id="gamePage">
-          <button onClick={handleReturn} type="button" id="returnButton" className="homeButtons">
+          <button
+            onClick={handleReturn}
+            type="button"
+            id="returnButton"
+            className="homeButtons"
+          >
             &#8634;
           </button>
-          {GameComponent && <GameComponent volume={muted ? 0 : 0.5 } />}
+          {GameComponent && <GameComponent volume={muted ? 0 : 0.5} />}
           <button
             onClick={handleAudio}
             type="button"
             id="volumnButton"
             className="homeButtons"
-          >{muted ?  "🕨": "🕪" }</button>
+          >
+            {muted ? "🕨" : "🕪"}
+          </button>
         </div>
       )}
     </div>

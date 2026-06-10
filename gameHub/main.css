@@ -1,118 +1,283 @@
+@font-face {
+  font-family: 'Pen';
+  src: url('/font/pen.ttf');
+}
+@font-face {
+  font-family: 'Scratch';
+  src: url('/font/scratch.ttf');
+}
+@font-face {
+  font-family: 'Grunge';
+  src: url('/font/grunge.ttf');
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  animation: colorChange 100s ease-in-out infinite;
+  background-color: #120d07;
   overflow: hidden;
-  font-family: monospace;
+  font-family: 'Scratch', serif;
+  color: #e8d5a3;
 }
 
-@keyframes colorChange {
-  0% {
-    background-color: #9ca986;
-  } /* soft green */
-  10% {
-    background-color: #a7c1a8;
-  } /* mint green */
-  20% {
-    background-color: #a6d6d6;
-  } /* aqua */
+/* ── Candle glow overlay ────────────────────────────────── */
+@keyframes candleGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
   30% {
-    background-color: #c8e7ff;
-  } /* light blue */
-  40% {
-    background-color: #a7aae1;
-  } /* soft lavender */
+    opacity: 0.9;
+    transform: scale(1.04);
+  }
   50% {
-    background-color: #d8e2dc;
-  } /* pale grey-pink */
-  60% {
-    background-color: #e7c988;
-  } /* warm tan */
-  70% {
-    background-color: #f8ad9d;
-  } /* soft peach */
-  80% {
-    background-color: #e5989b;
-  } /* muted red/pink */
-  90% {
-    background-color: #ca8787;
-  } /* dusty rose */
-  100% {
-    background-color: #9ca986;
-  } /* back to green */
+    opacity: 0.55;
+    transform: scale(0.98);
+  }
+  75% {
+    opacity: 0.85;
+    transform: scale(1.02);
+  }
 }
 
+.library-glow {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 110%, rgba(190, 110, 20, 0.35) 0%, transparent 55%),
+    radial-gradient(ellipse at 15% 60%, rgba(140, 70, 10, 0.18) 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 60%, rgba(140, 70, 10, 0.18) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% -10%, rgba(80, 40, 5, 0.2) 0%, transparent 60%);
+  animation: candleGlow 5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Dust / ember particles ─────────────────────────────── */
+@keyframes floatUp {
+  0%   { transform: translateY(0vh) translateX(0px);   opacity: 0; }
+  8%   { opacity: 0.75; }
+  85%  { opacity: 0.3; }
+  100% { transform: translateY(-105vh) translateX(var(--drift)); opacity: 0; }
+}
+
+.dust-particle {
+  position: fixed;
+  bottom: -4px;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background-color: rgba(220, 175, 90, 0.65);
+  box-shadow: 0 0 4px rgba(220, 175, 90, 0.5);
+  animation: floatUp var(--dur) ease-in var(--delay) infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Layout ─────────────────────────────────────────────── */
 #mainWrapper {
   display: grid;
   min-height: 100vh;
   width: 100vw;
   text-align: center;
   z-index: 1;
+  position: relative;
 }
 
+#homePage {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ── Header ─────────────────────────────────────────────── */
+#homePage header {
+  padding: 2.2rem 1rem 0.8rem;
+}
+
+@keyframes titleFlicker {
+  0%, 100% {
+    text-shadow:
+      0 0 18px rgba(190, 120, 30, 0.9),
+      0 0 40px rgba(180, 100, 20, 0.5),
+      0 0 80px rgba(160, 80, 10, 0.2);
+  }
+  40% {
+    text-shadow:
+      0 0 28px rgba(220, 150, 40, 1),
+      0 0 60px rgba(200, 130, 30, 0.7),
+      0 0 100px rgba(180, 100, 20, 0.4);
+  }
+  47% {
+    text-shadow:
+      0 0 12px rgba(160, 90, 15, 0.6),
+      0 0 25px rgba(140, 70, 10, 0.3);
+  }
+  52% {
+    text-shadow:
+      0 0 22px rgba(210, 140, 35, 0.95),
+      0 0 50px rgba(190, 115, 25, 0.6);
+  }
+}
+
+#homePage header h1 {
+  font-family: 'Pen', serif;
+  font-size: 3.6em;
+  color: #d4a84b;
+  animation: titleFlicker 7s ease-in-out infinite;
+  letter-spacing: 0.04em;
+  line-height: 1.1;
+}
+
+.header-ornament {
+  display: block;
+  color: #8a6030;
+  font-family: 'Pen', serif;
+  font-size: 0.35em;
+  letter-spacing: 0.6em;
+  margin-top: 0.5em;
+  opacity: 0.8;
+}
+
+#homePage header h2 {
+  font-family: 'Scratch', serif;
+  color: #9a7850;
+  font-size: 0.85em;
+  letter-spacing: 0.25em;
+  margin-top: 0.4rem;
+  opacity: 0.9;
+}
+
+/* ── Divider ─────────────────────────────────────────────── */
+.library-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 0.6rem auto 0;
+  width: 60%;
+  color: #7a5c2a;
+  font-size: 0.75em;
+  letter-spacing: 0.3em;
+}
+
+.library-divider::before,
+.library-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #7a5c2a, transparent);
+}
+
+/* ── Book grid ───────────────────────────────────────────── */
 #homePage main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  gap: 25px;
-  width: 95rem;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 1rem;
+  gap: 28px;
+  max-width: 95rem;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2rem;
+  flex: 1;
 }
 
+/* Book card — spine on the left */
 #homePage main button {
   width: 35em;
   height: 18em;
-  border-radius: 20px;
-  border: 7px double black;
-  transition: 0.1s ease-in-out;
+  border-radius: 2px 10px 10px 2px;
+  border: none;
+  border-left: 10px solid #5c3a14;
+  box-shadow:
+    -5px 0 10px rgba(0, 0, 0, 0.6),
+    5px 6px 18px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 1px rgba(160, 110, 40, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-left-color 0.3s ease;
   display: block;
   overflow: hidden;
   padding: 0;
+  position: relative;
+  cursor: pointer;
+  background: #1a1008;
+}
+
+/* Page-light shimmer on hover */
+#homePage main button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(130deg, rgba(210, 165, 70, 0.18) 0%, transparent 55%);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+#homePage main button:hover::after {
+  opacity: 1;
 }
 
 #homePage main button img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: sepia(35%) brightness(0.82);
+  transition: filter 0.35s ease, transform 0.35s ease;
 }
 
 #homePage main button:hover {
-  transform: scale(1.025);
-  box-shadow: 0px 5px 6px rgba(0, 0, 0, 0.3);
-  border: 2px solid black;
+  transform: translateY(-8px) rotate(-0.6deg);
+  box-shadow:
+    -5px 0 14px rgba(0, 0, 0, 0.7),
+    10px 16px 30px rgba(0, 0, 0, 0.65),
+    0 0 24px rgba(190, 130, 40, 0.25);
+  border-left-color: #c9973a;
 }
 
+#homePage main button:hover img {
+  filter: sepia(10%) brightness(1);
+  transform: scale(1.04);
+}
+
+/* ── Footer ─────────────────────────────────────────────── */
 #homePage footer {
-  padding: 1rem;
+  padding: 0.8rem 1rem 1.2rem;
   text-align: center;
+  color: #6e5030;
+  font-family: 'Scratch', serif;
+  font-size: 0.85em;
+  letter-spacing: 0.12em;
 }
 
-h1{
-  font-size: 2.5em;
-}
-
-#gamePage .homeButtons{
- background-color: transparent;
+/* ── Game page ───────────────────────────────────────────── */
+#gamePage .homeButtons {
+  background-color: transparent;
   border: none;
-  color: white; 
+  color: white;
   position: absolute;
   margin: 10px;
-  color: white;
 }
 
-#gamePage #returnButton{
+#gamePage #returnButton {
   top: 0;
   left: 0;
   font-size: 2.5rem;
 }
 
-#gamePage #volumnButton{
+#gamePage #volumnButton {
   top: 0;
   right: 0;
   font-size: 2rem;
 }
 
-
-#gamePage button:hover{
+#gamePage button:hover {
   transform: scale(1.05);
   text-shadow: 0px 0px 10px white;
 }
