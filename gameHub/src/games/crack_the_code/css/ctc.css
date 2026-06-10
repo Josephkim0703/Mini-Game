@@ -180,7 +180,7 @@
   position: absolute;
   bottom: 4%;
   width: 36rem;
-  height: 11rem;
+  height: 16rem;
   padding: 2.2rem;
   margin-right: auto;
   margin-left: auto;
@@ -190,7 +190,7 @@
   justify-content: center;
   align-items: center;
   font-family: "pixel";
-  font-size: 1.1em;
+  font-size: 1em;
 }
 
 #BoxWrapper {
@@ -214,8 +214,8 @@
   position: absolute;
   margin-bottom: 16rem;
   margin-left: 11px;
-  width: 15.5rem;
-  height: 2.6rem;
+  width: 16.8rem;
+  height: 3.5rem;
   font-size: 1.5rem;
   z-index: 1;
   font-family: "pixel";
@@ -282,7 +282,7 @@
 }
 
 #BoxWrapper #timer h1 {
-  margin-bottom: 27px;
+  margin-bottom: -6px;
   font-size: 3.5rem;
   color: red;
 }
@@ -316,8 +316,8 @@
   width: 4rem;
   transform: rotate(-10deg);
   z-index: 4;
-  top: 11rem;
-  left: 36rem;
+  top: 10.5rem;
+  left: 31rem;
   z-index: 1;
   transition: transform 0.1s ease-in-out;
 }

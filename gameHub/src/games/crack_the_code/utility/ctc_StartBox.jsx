@@ -1,7 +1,11 @@
 import "../css/ctc.css";
+import { useRef } from "react";
 
 function StartBox(props) {
+  const startedRef = useRef(false);
   const startGame = () => {
+    if (startedRef.current) return;
+    startedRef.current = true;
     props.setAudio("/assets/crackthecode/sounds/ctc_music_2.mp3");
     props.updateHide(0, true);
     props.setStyle((prev) => ({ ...prev, blur: 0 }));
@@ -38,10 +42,14 @@ function StartBox(props) {
             setTimeout(() => {
               let on = true;
               setTimeout(() => {
-                props.phoneRef.current.classList.add("phone-shake");
+                if (props.phoneRef.current) {
+                  props.phoneRef.current.classList.add("phone-shake");
+                }
                 props.setPhone("/assets/crackthecode/image/ctc_phone.png");
                 setTimeout(() => {
-                  props.phoneRef.current.classList.remove("phone-shake");
+                  if (props.phoneRef.current) {
+                    props.phoneRef.current.classList.remove("phone-shake");
+                  }
                   props.setPhone("/assets/crackthecode/image/ctc_phone_pickUp.png");
                 }, 2500);
               }, 8300);

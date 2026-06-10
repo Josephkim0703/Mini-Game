@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Rye&family=Special+Elite&family=Caveat:wght@600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Rye&family=Special+Elite&family=Caveat:wght@600&display=swap");
 
 * {
   box-sizing: border-box;
@@ -11,15 +11,19 @@ body {
   background-color: #fbfaf7;
   overflow-x: hidden;
   overflow-y: auto;
-  font-family: 'Outfit', 'Segoe UI', sans-serif;
+  font-family: "Outfit", "Segoe UI", sans-serif;
   color: #2b2b33;
   min-height: 100vh;
 }
 
 /* ── Rainbow dot grid — soft colors flow diagonally ─────── */
 @keyframes rainbowSlide {
-  0%   { background-position: 0% 0%; }
-  100% { background-position: 200% 200%; }
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 200%;
+  }
 }
 
 .library-glow {
@@ -27,8 +31,22 @@ body {
   inset: 0;
   background: linear-gradient(
     135deg,
-    #ff6b6b, #ffa94d, #ffd43b, #51cf66, #3bc9db, #5c7cfa, #b56bff, #f06595,
-    #ff6b6b, #ffa94d, #ffd43b, #51cf66, #3bc9db, #5c7cfa, #b56bff, #f06595,
+    #ff6b6b,
+    #ffa94d,
+    #ffd43b,
+    #51cf66,
+    #3bc9db,
+    #5c7cfa,
+    #b56bff,
+    #f06595,
+    #ff6b6b,
+    #ffa94d,
+    #ffd43b,
+    #51cf66,
+    #3bc9db,
+    #5c7cfa,
+    #b56bff,
+    #f06595,
     #ff6b6b
   );
   background-size: 200% 200%;
@@ -37,12 +55,10 @@ body {
   mask-image: radial-gradient(circle, #000 0.7px, transparent 1.6px);
   -webkit-mask-size: 28px 28px;
   mask-size: 28px 28px;
-  
+
   pointer-events: none;
   z-index: 0;
 }
-
-
 
 /* ── Layout ─────────────────────────────────────────────── */
 #mainWrapper {
@@ -64,7 +80,6 @@ body {
 /* ── Hero title — confetti letters ──────────────────────── */
 #homePage header {
   padding: 3.4rem 3rem 1.2rem;
-  
 }
 
 #homePage header h1 {
@@ -99,23 +114,48 @@ body {
   transform: translateY(-12px) rotate(-6deg) scale(1.15);
 }
 
-.title-letter:nth-child(8n + 1) { color: #ff5d5d; }
-.title-letter:nth-child(8n + 2) { color: #ff9f43; }
-.title-letter:nth-child(8n + 3) { color: #f6c445; }
-.title-letter:nth-child(8n + 4) { color: #2ecc8f; }
-.title-letter:nth-child(8n + 5) { color: #38b6ff; }
-.title-letter:nth-child(8n + 6) { color: #5d7bff; }
-.title-letter:nth-child(8n + 7) { color: #9b6bff; }
-.title-letter:nth-child(8n)     { color: #ff6bb5; }
+.title-letter:nth-child(8n + 1) {
+  color: #ff5d5d;
+}
+.title-letter:nth-child(8n + 2) {
+  color: #ff9f43;
+}
+.title-letter:nth-child(8n + 3) {
+  color: #f6c445;
+}
+.title-letter:nth-child(8n + 4) {
+  color: #2ecc8f;
+}
+.title-letter:nth-child(8n + 5) {
+  color: #38b6ff;
+}
+.title-letter:nth-child(8n + 6) {
+  color: #5d7bff;
+}
+.title-letter:nth-child(8n + 7) {
+  color: #9b6bff;
+}
+.title-letter:nth-child(8n) {
+  color: #ff6bb5;
+}
 
 /* subtle idle wave so the title feels alive */
 @keyframes letterWave {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-4px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
 }
 
-.title-letter:nth-child(odd)  { animation: letterWave 3.4s ease-in-out infinite; }
-.title-letter:nth-child(even) { animation: letterWave 3.4s ease-in-out 1.7s infinite; }
+.title-letter:nth-child(odd) {
+  animation: letterWave 3.4s ease-in-out infinite;
+}
+.title-letter:nth-child(even) {
+  animation: letterWave 3.4s ease-in-out 1.7s infinite;
+}
 
 .title-letter:hover {
   animation: none;
@@ -158,46 +198,184 @@ body {
 
 /* ── Card — clean white tile, everything inside ─────────── */
 @keyframes cardEnter {
-  from { opacity: 0; transform: translateY(26px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Fidget keyboard — one translucent base, chonky caps ── */
+/* the base is the grid container itself, so it automatically
+   grows when more games are added */
+#homePage main {
+  position: relative;
+  padding-bottom: 3.4rem;
+}
+
+#homePage main::before {
+  content: "";
+  position: absolute;
+  inset: 1rem 0.6rem 1.6rem;
+  border-radius: 34px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.09) 100%
+  );
+  /* faint black contour around the case */
+  border: 1px solid rgba(35, 36, 42, 0.4);
+  /* 3D case thickness — translucent walls on left, right, bottom */
+  box-shadow:
+    -8px 10px 0 rgba(35, 36, 42, 0.28),
+    8px 10px 0 rgba(35, 36, 42, 0.28),
+    0 22px 30px rgba(40, 40, 50, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    inset 0 3px 10px rgba(255, 255, 255, 0.28),
+    inset 0 -5px 14px rgba(40, 40, 50, 0.06);
+  backdrop-filter: blur(1.5px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#homePage main a {
+  position: relative;
+  padding-bottom: 26px;
+}
+
+/* per-key RGB underglow — lights up inside the base on hover */
+@keyframes rgbFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 250% 50%;
+  }
+}
+
+#homePage main a::after {
+  content: "";
+  position: absolute;
+  inset: 10px -6px 0px;
+  border-radius: 30px;
+  background: linear-gradient(
+    90deg,
+    #ff6b6b,
+    #ffa94d,
+    #ffd43b,
+    #51cf66,
+    #3bc9db,
+    #5c7cfa,
+    #b56bff,
+    #f06595,
+    #ff6b6b
+  );
+  background-size: 250% 100%;
+  animation: rgbFlow 2.5s linear infinite;
+  filter: blur(14px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#homePage main a:hover::after {
+  opacity: 0.85;
 }
 
 .plate {
   width: 100%;
   display: flex;
   flex-direction: column;
-  background: #ffffff;
-  border: 1px solid #e7e4dc;
-  border-radius: 16px;
+  /* keycap top surface — dark grey plastic sheen */
+  background: linear-gradient(180deg, #75767e 0%, #60616a 100%);
+  /* pyramid bevel — thin top edge, sloped left/right walls,
+     thick bottom wall; mitred corners sell the 3D shape */
+  border-style: solid;
+  border-width: 3px 9px 12px 9px;
+  border-color: #888992 #4d4e57 #39393f #4d4e57;
+  /* keycap profile — wider radius on the top face, tighter at
+     the base, like a sculpted cap seen from the front */
+  border-radius: 24px 24px 15px 15px;
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(40, 40, 50, 0.06);
-  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  position: relative;
+  z-index: 1;
+  /* contour line around the whole cap */
+  outline: 2px solid #1a1b20;
+  /* two-tone key wall below the cap — keeps depth when pressed */
+  box-shadow:
+    0 7px 0 #494a53,
+    0 13px 0 #35363c,
+    0 15px 0 #26272d,
+    0px 18px 12px rgba(20, 20, 28, 0.45),
+    inset 0 2px 0 rgba(255, 255, 255, 0.18),
+    inset 0 0 0px 1px rgba(0, 0, 0, 0.35),
+    inset 0px -3px 6px rgba(0, 0, 0, 0.18);
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease;
   animation: cardEnter 0.5s ease backwards;
 }
 
-/* staggered entrance */
-#homePage main a:nth-of-type(1) .plate { animation-delay: 0.05s; }
-#homePage main a:nth-of-type(2) .plate { animation-delay: 0.12s; }
-#homePage main a:nth-of-type(3) .plate { animation-delay: 0.19s; }
-#homePage main a:nth-of-type(4) .plate { animation-delay: 0.26s; }
-#homePage main a:nth-of-type(5) .plate { animation-delay: 0.33s; }
-#homePage main a:nth-of-type(6) .plate { animation-delay: 0.4s; }
-
+/* hover: shove the cap down into the base */
 .plate:hover {
-  transform: translateY(-6px) rotate(-0.4deg);
-  box-shadow: 0 14px 30px rgba(40, 40, 50, 0.14);
-  border-color: #d8d4c8;
+  transform: translateY(9px);
+  box-shadow:
+    0 3px 0 #494a53,
+    0 5px 0 #35363c,
+    0 7px 0 #26272d,
+    0 9px 7px rgba(20, 20, 28, 0.4),
+    inset 0 2px 0 rgba(255, 255, 255, 0.18),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.35),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.18);
+}
+
+/* click: full bottom-out, flush with the base */
+.plate:active {
+  transform: translateY(12px);
+  box-shadow:
+    0 1px 0 #494a53,
+    0 2px 0 #35363c,
+    0 3px 0 #26272d,
+    0 4px 5px rgba(20, 20, 28, 0.35),
+    inset 0 2px 0 rgba(255, 255, 255, 0.18),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.5),
+    inset 0 -3px 6px rgba(0, 0, 0, 0.25);
+  transition-duration: 0.05s;
+}
+
+/* staggered entrance */
+#homePage main a:nth-of-type(1) .plate {
+  animation-delay: 0.05s;
+}
+#homePage main a:nth-of-type(2) .plate {
+  animation-delay: 0.12s;
+}
+#homePage main a:nth-of-type(3) .plate {
+  animation-delay: 0.19s;
+}
+#homePage main a:nth-of-type(4) .plate {
+  animation-delay: 0.26s;
+}
+#homePage main a:nth-of-type(5) .plate {
+  animation-delay: 0.33s;
+}
+#homePage main a:nth-of-type(6) .plate {
+  animation-delay: 0.4s;
 }
 
 #homePage main button {
   width: 100%;
   height: 12.5em;
-  border: none;
   display: block;
   overflow: hidden;
   padding: 0;
   cursor: pointer;
-  background: #f0eee8;
+  background: #2a2b31;
+  border: none;
 }
 
 #homePage main button img {
@@ -206,28 +384,30 @@ body {
   object-fit: cover;
   display: block;
   transition: transform 0.35s ease;
+  
 }
 
 .plate:hover button img {
-  transform: scale(1.06);
+  transform: scale(1.04);
+
 }
 
 /* ── Caption inside the card ────────────────────────────── */
 .plate-caption {
   padding: 0.9em 1.1em 1.1em;
   text-align: left;
+  border: 1px solid #000000;
 }
 
 .plate-caption h3 {
   font-weight: 700;
   font-size: 1.18em;
-  color: #2b2b33;
+  color: #ececf2;
   letter-spacing: 0.01em;
   display: flex;
   align-items: center;
   gap: 0.4em;
 }
-
 
 .plate:hover .plate-caption h3::after {
   opacity: 1;
@@ -237,7 +417,7 @@ body {
 .plate-caption p {
   font-weight: 400;
   font-size: 0.95em;
-  color: #6e6e78;
+  color: #9b9ba6;
   margin-top: 0.25em;
   line-height: 1.45;
 }
@@ -266,7 +446,6 @@ body {
   flex: 1;
 }
 
-
 /* ── Footer ─────────────────────────────────────────────── */
 #homePage footer {
   padding: 0.4rem 1rem 1.8rem;
@@ -274,130 +453,6 @@ body {
   color: #9a9aa4;
   font-weight: 500;
   font-size: 0.95em;
-}
-
-/* ── Dark mode toggle ───────────────────────────────────── */
-#darkToggle {
-  position: fixed;
-  top: 18px;
-  right: 18px;
-  z-index: 10;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  border: 1px solid #e7e4dc;
-  background: #ffffff;
-  font-size: 1.25em;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(40, 40, 50, 0.12);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease, border-color 0.3s ease;
-}
-
-#darkToggle:hover {
-  transform: scale(1.1) rotate(-12deg);
-  box-shadow: 0 6px 14px rgba(40, 40, 50, 0.2);
-}
-
-/* ── Dark mode ──────────────────────────────────────────── */
-#mainWrapper {
-  min-height: 100vh;
-  transition: background-color 0.35s ease;
-}
-
-#mainWrapper.dark-mode {
-  background-color: #17181d;
-}
-
-.dark-mode .library-glow {
-  opacity: 0.8;
-}
-
-.dark-mode .title-letter,
-.dark-mode .header-ornament {
-  text-shadow:
-    0 0 6px #17181d,
-    0 0 14px #17181d;
-}
-
-.dark-mode .header-ornament {
-  color: #a8a8b4;
-}
-
-.dark-mode .plate {
-  background: #222329;
-  border-color: #34353d;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
-}
-
-.dark-mode .plate:hover {
-  border-color: #4a4b55;
-  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
-}
-
-.dark-mode #homePage main button {
-  background: #2b2c33;
-}
-
-.dark-mode .plate-caption h3 {
-  color: #ececf2;
-}
-
-.dark-mode .plate-caption p {
-  color: #a2a2ae;
-}
-
-.dark-mode #homePage footer {
-  color: #6e6e7a;
-}
-
-.dark-mode #darkToggle {
-  background: #222329;
-  border-color: #34353d;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-}
-
-/* themed cards keep their identity in the dark — only the
-   light-paper ones need adjusting */
-.dark-mode .plate--groove {
-  background: linear-gradient(150deg, #2d2030 0%, #251d33 55%, #1d2530 100%);
-  border-color: #8a4070;
-}
-
-.dark-mode .plate--groove .plate-caption h3 {
-  color: #f08ac8;
-}
-
-.dark-mode .plate--groove .plate-caption p {
-  color: #b89ac8;
-}
-
-.dark-mode .plate--soon {
-  background: #26241c;
-  border-color: #a8820f;
-}
-
-.dark-mode .plate--soon .plate-caption h3 {
-  color: #d8b830;
-}
-
-.dark-mode .plate--wanted {
-  background:
-    radial-gradient(ellipse at 50% 18%, rgba(120, 100, 65, 0.35) 0%, transparent 70%),
-    radial-gradient(ellipse at 50% 100%, rgba(60, 42, 20, 0.5) 0%, transparent 60%),
-    #57451f;
-  border-color: #2e2008;
-  box-shadow:
-    inset 0 0 0 3px #57451f,
-    inset 0 0 0 4px rgba(35, 24, 8, 0.7),
-    inset 0 0 34px rgba(30, 20, 8, 0.5),
-    0 1px 3px rgba(0, 0, 0, 0.4);
-}
-
-.dark-mode .plate--wanted::before,
-.dark-mode .plate--wanted .plate-caption::before,
-.dark-mode .plate--wanted .plate-caption h3,
-.dark-mode .plate--wanted .plate-caption p {
-  color: #e8d5a0;
 }
 
 /* ── Game page ───────────────────────────────────────────── */
@@ -411,13 +466,13 @@ body {
 
 #gamePage #returnButton {
   top: 0;
-  left: 0;
+  left: 10px;
   font-size: 2.5rem;
 }
 
 #gamePage #volumnButton {
   top: 0;
-  right: 0;
+  right: 25px;
   font-size: 2rem;
 }
 

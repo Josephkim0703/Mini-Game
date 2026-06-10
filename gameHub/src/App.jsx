@@ -1,9 +1,7 @@
 import "/main.css";
-import { useState } from "react";
+import { useState, useCallback, useRef } from "react";
 import CrackTheCode from "./games/crack_the_code/CrackTheCode.jsx";
 import OnceUponATune from "./games/once_upon_a_tune/StuckInMyHead.jsx";
-
-
 
 function App() {
   const [currentGame, setCurrentGame] = useState(null);
@@ -15,7 +13,8 @@ function App() {
     {
       name: "Crack The Code",
       theme: "secret",
-      description: "Defuse the bomb before time runs out — and don't let the lights stay off.",
+      description:
+        "Defuse the bomb before time runs out — and don't let the lights stay off.",
       component: CrackTheCode,
       link: null,
       thumbnail: "/assets/wallpapers/crackthecode.png",
@@ -24,7 +23,8 @@ function App() {
     {
       name: "Stuck In My Head",
       theme: "groove",
-      description: "An earworm guessing game. How well do you really know your tunes?",
+      description:
+        "An earworm guessing game. How well do you really know your tunes?",
       component: OnceUponATune,
       link: null,
       thumbnail: "/assets/wallpapers/stuckinmyhead.png",
@@ -82,25 +82,63 @@ function App() {
     setMuted((prev) => !prev);
   };
 
+  const audioCtxRef = useRef(null);
+  const playThock = useCallback(() => {
+    if (!audioCtxRef.current) {
+      audioCtxRef.current = new (
+        window.AudioContext || window.webkitAudioContext
+      )();
+    }
+    const ctx = audioCtxRef.current;
+    const now = ctx.currentTime;
+
+    // sine "thump" — the deep body of a cream switch
+    const osc = ctx.createOscillator();
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(95, now);
+    osc.frequency.exponentialRampToValueAtTime(55, now + 0.05);
+
+    const oscGain = ctx.createGain();
+    oscGain.gain.setValueAtTime(0.7, now);
+    oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+
+    osc.connect(oscGain);
+    oscGain.connect(ctx.destination);
+    osc.start(now);
+    osc.stop(now + 0.07);
+
+    // very short noise burst — just the subtle "impact" layer
+    const bufferSize = Math.floor(ctx.sampleRate * 0.04);
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = buffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / bufferSize, 10);
+    }
+    const noise = ctx.createBufferSource();
+    noise.buffer = buffer;
+
+    // low-pass keeps it muffled/creamy — cut everything above ~250 Hz
+    const lp = ctx.createBiquadFilter();
+    lp.type = "lowpass";
+    lp.frequency.value = 1500;
+    lp.Q.value = 0.8;
+
+    const noiseGain = ctx.createGain();
+    noiseGain.gain.setValueAtTime(0.3, now);
+    noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+
+    noise.connect(lp);
+    lp.connect(noiseGain);
+    noiseGain.connect(ctx.destination);
+    noise.start(now);
+  }, []);
+
   const GameComponent =
     currentGame !== null ? games[currentGame].component : null;
 
   return (
     <div id="mainWrapper" className={dark ? "dark-mode" : ""}>
       {hide && <div className="library-glow" />}
-
-      {hide && (
-        <button
-          type="button"
-          id="darkToggle"
-          onClick={() => setDark((prev) => !prev)}
-          aria-label="Toggle dark mode"
-        >
-          {dark ? "☀️" : "🌙"}
-        </button>
-      )}
-
-
 
       {hide && (
         <div id="homePage">
@@ -124,7 +162,10 @@ function App() {
           <main>
             {games.map((game, index) => (
               <a href={game.link} key={index}>
-                <div className={`plate plate--${game.theme}`}>
+                <div
+                  className={`plate plate--${game.theme}`}
+                  onMouseEnter={playThock}
+                >
                   <button onClick={() => handleClick(index)}>
                     <img src={game.thumbnail} alt={game.name} />
                   </button>
@@ -153,7 +194,7 @@ function App() {
           >
             &#8634;
           </button>
-          {GameComponent && <GameComponent volume={muted ? 0 : 0.5} />}
+          {GameComponent && <GameComponent volume={muted ? 0 : 0.1} />}
           <button
             onClick={handleAudio}
             type="button"

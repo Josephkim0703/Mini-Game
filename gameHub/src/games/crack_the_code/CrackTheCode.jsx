@@ -63,6 +63,7 @@ function CrackTheCode(props) {
   };
 
   //handles what happens when the game is over
+  const gameOverTimerRef = useRef(null);
   useEffect(() => {
     if (gameOver.over == true) {
       setBackground("/assets/crackthecode/image/ctc_black.jpg");
@@ -75,7 +76,7 @@ function CrackTheCode(props) {
         updateHide(5, true);
         setAudio("/assets/crackthecode/sounds/ctc_explosion.mp3");
         setBgmloop(false);
-        setTimeout(() => {
+        gameOverTimerRef.current = setTimeout(() => {
           setBackground("/assets/crackthecode/image/ctc_black.jpg");
           updateHide(5, false);
         }, 1000);
@@ -83,6 +84,7 @@ function CrackTheCode(props) {
         updateHide(4, true);
       }
     }
+    return () => clearTimeout(gameOverTimerRef.current);
   }, [gameOver]);
 
   //restart the game
@@ -118,9 +120,9 @@ function CrackTheCode(props) {
   useEffect(() => {
     bgmRef.current = new Audio(audio);
     bgmRef.current.loop = bgmloop;
-    bgmRef.current.volume = 0.5;
+    bgmRef.current.volume = props.volume ?? 0.1;
     bgmRef.current.play();
-   
+
     return () => {
       bgmRef.current.pause();
       bgmRef.current.currentTime = 0;
@@ -128,10 +130,12 @@ function CrackTheCode(props) {
     };
   }, [audio]);
 
-   useEffect(() => {
-    if (bgmRef.current) {
-      bgmRef.current.volume = props.volume;
-    }
+  useEffect(() => {
+    if (bgmRef.current) bgmRef.current.loop = bgmloop;
+  }, [bgmloop]);
+
+  useEffect(() => {
+    if (bgmRef.current) bgmRef.current.volume = props.volume;
   }, [props.volume]);
 
   return (

@@ -51,6 +51,11 @@ function Box(props) {
     //gets random word then converts to morse code
     async function fetchMorse() {
       setPlaceHolder("Enter: Word");
+      const fallbackWords = [
+        "delta", "bravo", "tango", "foxtrot", "sierra",
+        "oscar", "zulu", "kilo", "victor", "echo",
+        "lima", "hotel", "alpha", "india", "romeo",
+      ];
       let randomWord = "";
       try {
         const resWord = await fetch(
@@ -60,40 +65,18 @@ function Box(props) {
         randomWord = data[0];
         if (!randomWord) throw new Error("No word returned");
       } catch (err) {
-        console.error("Error fetching word data:", err);
-        return;
+        console.error("Error fetching word data, using fallback:", err);
+        randomWord = fallbackWords[Math.floor(Math.random() * fallbackWords.length)];
       }
       const cleanWord = randomWord.replace(/-/g, " ").trim();
       const MORSE_MAP = {
-        a: ".-",
-        b: "-...",
-        c: "-.-.",
-        d: "-..",
-        e: ".",
-        f: "..-.",
-        g: "--.",
-        h: "....",
-        i: "..",
-        j: ".---",
-        k: "-.-",
-        l: ".-..",
-        m: "--",
-        n: "-.",
-        o: "---",
-        p: ".--.",
-        q: "--.-",
-        r: ".-.",
-        s: "...",
-        t: "-",
-        u: "..-",
-        v: "...-",
-        w: ".--",
-        x: "-..-",
-        y: "-.--",
-        z: "--..",
-        " ": " / ",
+        a: ".-", b: "-...", c: "-.-.", d: "-..", e: ".",
+        f: "..-.", g: "--.", h: "....", i: "..", j: ".---",
+        k: "-.-", l: ".-..", m: "--", n: "-.", o: "---",
+        p: ".--.", q: "--.-", r: ".-.", s: "...", t: "-",
+        u: "..-", v: "...-", w: ".--", x: "-..-", y: "-.--",
+        z: "--..", " ": " / ",
       };
-
       function textToMorse(text) {
         return text
           .toLowerCase()
@@ -103,14 +86,9 @@ function Box(props) {
           .replace(/\s+/g, " ")
           .trim();
       }
-      if (!cleanWord) {
-        setAnswer("temporary");
-        setTemp(textToMorse("temporary"));
-      } else {
-        const lower = cleanWord.toLowerCase();
-        setAnswer(lower);
-        setTemp(textToMorse(lower));
-      }
+      const lower = (cleanWord || "signal").toLowerCase();
+      setAnswer(lower);
+      setTemp(textToMorse(lower));
     }
     //grabs two elements then create an equation to find a third element
     function fetchElements() {
@@ -213,18 +191,24 @@ function Box(props) {
       let location = "Unknown";
       let lat = 0;
       let lon = 0;
-      while (location == "Unknown" || location == undefined) {
+      let retries = 0;
+      while ((location == "Unknown" || location == undefined) && retries < 25) {
+        retries++;
         lat = Math.random() * 180 - 90;
         lon = Math.random() * 360 - 180;
-        const res = await fetch(
-          `https://api.geoapify.com/v1/geocode/reverse?lat=${lat.toFixed(
-            4
-          )}&lon=${lon.toFixed(4)}&apiKey=4566cca66c154e8f87ae36260bca12f8`
-        );
-        const data = await res.json();
-        location = data.features[0].properties.country;
+        try {
+          const res = await fetch(
+            `https://api.geoapify.com/v1/geocode/reverse?lat=${lat.toFixed(
+              4
+            )}&lon=${lon.toFixed(4)}&apiKey=4566cca66c154e8f87ae36260bca12f8`
+          );
+          const data = await res.json();
+          location = data.features?.[0]?.properties?.country;
+        } catch (err) {
+          console.error("Error fetching location:", err);
+        }
       }
-      if (location !== "Unknown") {
+      if (location && location !== "Unknown") {
         setTemp(lat);
         setTemp2(lon);
         setAnswer(location.toLowerCase().normalize("NFD"));
@@ -322,6 +306,7 @@ function Box(props) {
   //Scriptline injections
   useEffect(() => {
     if (props.script[props.currentLine].requiresAnswer == "placeholder_1") {
+      if (temp === null) return;
       props.setScript((prev) => {
         const newArr = [...prev];
         newArr[props.currentLine] = {
@@ -343,6 +328,7 @@ function Box(props) {
     } else if (
       props.script[props.currentLine].requiresAnswer == "placeholder_2"
     ) {
+      if (temp === null || temp2 === null) return;
       props.setScript((prev) => {
         const newArr = [...prev];
         newArr[props.currentLine] = {
@@ -366,6 +352,7 @@ function Box(props) {
     } else if (
       props.script[props.currentLine].requiresAnswer == "placeholder_3"
     ) {
+      if (temp === null) return;
       props.setScript((prev) => {
         const newArr = [...prev];
         newArr[props.currentLine] = {
@@ -373,7 +360,7 @@ function Box(props) {
             <span>
               Officer… your terminal just flashed two codes: <br />( {temp} )
               <br />
-              Convert them to decimal, subtract the smaller from the larger,
+              Convert them to a number, subtract the smaller from the larger,
               then turn the result back into <br /> 8-bit binary.
               <br />
               <span style={{ color: "rgb(255,190,0)" }}>(Clue: Convert)</span>
@@ -387,6 +374,7 @@ function Box(props) {
     } else if (
       props.script[props.currentLine].requiresAnswer == "placeholder_4"
     ) {
+      if (temp === null || temp2 === null || temp3 === null) return;
       props.setScript((prev) => {
         const newArr = [...prev];
         newArr[props.currentLine] = {
@@ -399,7 +387,7 @@ function Box(props) {
               With gravity at ( 9.8 m/s² ), will they make the jump or fail?{" "}
               <br />
               <span style={{ color: "rgb(255,190,0)" }}>
-                (Clue: Round down)
+                (Clue: Do the Math Round down)
               </span>
             </span>
           ),
@@ -411,6 +399,7 @@ function Box(props) {
     } else if (
       props.script[props.currentLine].requiresAnswer == "placeholder_5"
     ) {
+      if (temp === null || temp2 === null) return;
       props.setScript((prev) => {
         const newArr = [...prev];
         newArr[props.currentLine] = {
@@ -434,6 +423,7 @@ function Box(props) {
     } else if (
       props.script[props.currentLine].requiresAnswer == "placeholder_6"
     ) {
+      if (temp === null) return;
       props.setScript((prev) => {
         const newArr = [...prev];
         newArr[props.currentLine] = {
@@ -446,6 +436,7 @@ function Box(props) {
     } else if (
       props.script[props.currentLine].requiresAnswer == "placeholder_7"
     ) {
+      if (temp === null) return;
       props.setScript((prev) => {
         const newArr = [...prev];
         newArr[props.currentLine] = {
@@ -461,7 +452,7 @@ function Box(props) {
     } else {
       props.setPhone("/assets/crackthecode/image/ctc_phone_pickUp.png");
     }
-  }, [props.currentLine]);
+  }, [props.currentLine, temp, temp2, temp3]);
 
   //handle defuse button
   const handleClick = () => {
@@ -609,6 +600,9 @@ function Box(props) {
             </button>
           </span>
         </div>
+        <h1 style={{ color: "white", textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)" }}>
+          {answer}
+        </h1>
         <div id="healthBar">
           {heart.map((x, index) => (
             <button
@@ -617,8 +611,10 @@ function Box(props) {
               style={{ backgroundColor: x.color }}
             ></button>
           ))}
+          
         </div>
       </div>
+   
     </>
   );
 }

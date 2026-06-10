@@ -78,8 +78,7 @@ export const initialScript = [
       <span>
         The first answer you need is hidden above you,
         <br />
-        I’m born anew and age each night, Count the days I hide from sight.
-        Follow the lunar path up high, now tell me...{" "}
+        In Lunar years what is the current age of the moon {" "}
         <span style={{ color: "red" }}>how old am I?</span>
         <br />
         <span style={{ color: "rgb(255, 190, 0)" }}>(Clue: Lunar)</span>
@@ -121,14 +120,8 @@ export const initialScript = [
   {
     text: (
       <span>
-        Tell me, officer... how far will your
-        <span style={{ color: "red" }}> MEGA</span> ego take you before you
-        falter?
-        <br />
-        Search for 6 lucky numbers round and bright,
-        <span style={{ color: "red" }}> MILLIONS</span> chase them day and
-        night. Add them up, then find the average, Red text, it may give you an
-        advantage
+        Find the winning numbers of the Mega Millions Lottery<br />
+        Add them up, then find the average.
         <br />
         <span style={{ color: "rgb(255, 190, 0)" }}>(Clue: Round down)</span>
       </span>
