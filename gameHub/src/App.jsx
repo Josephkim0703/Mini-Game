@@ -20,6 +20,7 @@ function App() {
   const games = [
     {
       name: "Crack The Code",
+      description: "Defuse the bomb before time runs out — and don't let the lights stay off.",
       component: CrackTheCode,
       link: null,
       thumbnail: "/assets/wallpapers/crackthecode.png",
@@ -27,33 +28,38 @@ function App() {
     },
     {
       name: "Stuck In My Head",
+      description: "An earworm guessing game. How well do you really know your tunes?",
       component: OnceUponATune,
       link: null,
       thumbnail: "/assets/wallpapers/stuckinmyhead.png",
       status: "active",
     },
     {
-      name: "",
+      name: "Devil Fruit Encyclopedia",
+      description: "A catalogue of every devil fruit on the Grand Line.",
       component: () => <div>Off Site</div>,
       link: "https://josephkim0703.github.io/devil-fruit-encyclopedia/",
       thumbnail: "/assets/wallpapers/onepiece.jpg",
       status: "active",
     },
     {
-      name: "",
+      name: "Domain Expansion",
+      description: "Step into the domain — a Jujutsu Kaisen tribute.",
       component: () => <div>Off Site</div>,
       link: "https://josephkim0703.github.io/Domain-Expansion/",
       thumbnail: "/assets/wallpapers/domainExpansion2.png",
       status: "active",
     },
     {
-      name: "",
+      name: "Coming Soon",
+      description: "This page hasn't been written yet…",
       component: () => <div>Coming Soon!</div>,
       thumbnail: "/assets/wallpapers/construction.png",
       status: "none",
     },
     {
-      name: "",
+      name: "Coming Soon",
+      description: "This page hasn't been written yet…",
       component: () => <div>Coming Soon!</div>,
       thumbnail: "/assets/wallpapers/construction.png",
       status: "none",
@@ -81,10 +87,8 @@ function App() {
 
   return (
     <div id="mainWrapper">
-      {/* Ambient candle glow layer */}
       <div className="library-glow" />
 
-      {/* Floating dust motes */}
       {DUST_PARTICLES.map((p) => (
         <div
           key={p.id}
@@ -104,7 +108,9 @@ function App() {
           <header>
             <h1>
               Kimonsters Library
-              <span className="header-ornament">✦ &nbsp; A Collection of Curios &nbsp; ✦</span>
+              <span className="header-ornament">
+                ✦ &nbsp; A Collection of Curios &nbsp; ✦
+              </span>
             </h1>
             <h2>step inside &mdash; the shelves are always open</h2>
           </header>
@@ -114,15 +120,21 @@ function App() {
           <main>
             {games.map((game, index) => (
               <a href={game.link} key={index}>
-                <button onClick={() => handleClick(index)}>
-                  <img src={game.thumbnail} alt={game.name} />
-                </button>
+                <div className="plate">
+                  <button onClick={() => handleClick(index)}>
+                    <img src={game.thumbnail} alt={game.name} />
+                  </button>
+                  <div className="plate-caption">
+                    <h3>{game.name}</h3>
+                    <p>{game.description}</p>
+                  </div>
+                </div>
               </a>
             ))}
           </main>
 
           <footer>
-            <h2>Hi! I'm Kimonster. This is where my boredom goes.</h2>
+            <h2>Hi! I&rsquo;m Kimonster. This is where my boredom goes.</h2>
           </footer>
         </div>
       )}

@@ -1,15 +1,4 @@
-@font-face {
-  font-family: 'Pen';
-  src: url('/font/pen.ttf');
-}
-@font-face {
-  font-family: 'Scratch';
-  src: url('/font/scratch.ttf');
-}
-@font-face {
-  font-family: 'Grunge';
-  src: url('/font/grunge.ttf');
-}
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap');
 
 * {
   box-sizing: border-box;
@@ -18,50 +7,40 @@
 }
 
 body {
-  background-color: #120d07;
-  overflow: hidden;
-  font-family: 'Scratch', serif;
-  color: #e8d5a3;
+  /* aged parchment */
+  background-color: #ede0c4;
+  background-image:
+    radial-gradient(ellipse at 20% 15%, rgba(214, 190, 140, 0.55) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 80%, rgba(205, 178, 128, 0.5) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(248, 240, 218, 0.65) 0%, transparent 70%);
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  color: #4a3520;
 }
 
-/* ── Candle glow overlay ────────────────────────────────── */
-@keyframes candleGlow {
-  0%, 100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  30% {
-    opacity: 0.9;
-    transform: scale(1.04);
-  }
-  50% {
-    opacity: 0.55;
-    transform: scale(0.98);
-  }
-  75% {
-    opacity: 0.85;
-    transform: scale(1.02);
-  }
+/* ── Vignette — soft aged edges, breathes slowly ────────── */
+@keyframes vignetteBreathe {
+  0%, 100% { opacity: 0.55; }
+  50%      { opacity: 0.8; }
 }
 
 .library-glow {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(ellipse at 50% 110%, rgba(190, 110, 20, 0.35) 0%, transparent 55%),
-    radial-gradient(ellipse at 15% 60%, rgba(140, 70, 10, 0.18) 0%, transparent 45%),
-    radial-gradient(ellipse at 85% 60%, rgba(140, 70, 10, 0.18) 0%, transparent 45%),
-    radial-gradient(ellipse at 50% -10%, rgba(80, 40, 5, 0.2) 0%, transparent 60%);
-  animation: candleGlow 5s ease-in-out infinite;
+    radial-gradient(ellipse at 50% 50%, transparent 55%, rgba(150, 110, 55, 0.28) 100%),
+    radial-gradient(ellipse at 50% 115%, rgba(170, 130, 70, 0.18) 0%, transparent 45%);
+  animation: vignetteBreathe 9s ease-in-out infinite;
   pointer-events: none;
-  z-index: 0;
+  z-index: 2;
 }
 
-/* ── Dust / ember particles ─────────────────────────────── */
+/* ── Ink-dust particles (sepia motes drifting up) ───────── */
 @keyframes floatUp {
-  0%   { transform: translateY(0vh) translateX(0px);   opacity: 0; }
-  8%   { opacity: 0.75; }
-  85%  { opacity: 0.3; }
+  0%   { transform: translateY(0)      translateX(0px);         opacity: 0; }
+  8%   { opacity: 0.55; }
+  85%  { opacity: 0.2; }
   100% { transform: translateY(-105vh) translateX(var(--drift)); opacity: 0; }
 }
 
@@ -71,100 +50,90 @@ body {
   width: var(--size);
   height: var(--size);
   border-radius: 50%;
-  background-color: rgba(220, 175, 90, 0.65);
-  box-shadow: 0 0 4px rgba(220, 175, 90, 0.5);
+  background-color: rgba(130, 95, 45, 0.5);
+  box-shadow: 0 0 3px rgba(130, 95, 45, 0.35);
   animation: floatUp var(--dur) ease-in var(--delay) infinite;
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
 }
 
 /* ── Layout ─────────────────────────────────────────────── */
 #mainWrapper {
-  display: grid;
   min-height: 100vh;
   width: 100vw;
   text-align: center;
-  z-index: 1;
   position: relative;
 }
 
 #homePage {
   position: relative;
-  z-index: 1;
+  z-index: 3;
   display: flex;
   flex-direction: column;
+  align-items: center;
   min-height: 100vh;
 }
 
-/* ── Header ─────────────────────────────────────────────── */
+/* ── Title — free-form, inked onto the page ─────────────── */
 #homePage header {
-  padding: 2.2rem 1rem 0.8rem;
+  padding: 2.6rem 1rem 0.4rem;
 }
 
-@keyframes titleFlicker {
+@keyframes titleShimmer {
   0%, 100% {
     text-shadow:
-      0 0 18px rgba(190, 120, 30, 0.9),
-      0 0 40px rgba(180, 100, 20, 0.5),
-      0 0 80px rgba(160, 80, 10, 0.2);
+      0 1px 0 rgba(120, 85, 30, 0.25),
+      0 0 22px rgba(190, 145, 60, 0.35);
   }
-  40% {
+  50% {
     text-shadow:
-      0 0 28px rgba(220, 150, 40, 1),
-      0 0 60px rgba(200, 130, 30, 0.7),
-      0 0 100px rgba(180, 100, 20, 0.4);
-  }
-  47% {
-    text-shadow:
-      0 0 12px rgba(160, 90, 15, 0.6),
-      0 0 25px rgba(140, 70, 10, 0.3);
-  }
-  52% {
-    text-shadow:
-      0 0 22px rgba(210, 140, 35, 0.95),
-      0 0 50px rgba(190, 115, 25, 0.6);
+      0 1px 0 rgba(120, 85, 30, 0.25),
+      0 0 34px rgba(200, 155, 65, 0.6),
+      0 0 60px rgba(190, 145, 55, 0.25);
   }
 }
 
 #homePage header h1 {
-  font-family: 'Pen', serif;
-  font-size: 3.6em;
-  color: #d4a84b;
-  animation: titleFlicker 7s ease-in-out infinite;
-  letter-spacing: 0.04em;
-  line-height: 1.1;
+  font-family: 'Cinzel', Georgia, serif;
+  font-weight: 500;
+  font-size: 3.4em;
+  color: #8a6420;
+  letter-spacing: 0.14em;
+  line-height: 1.12;
+  animation: titleShimmer 6s ease-in-out infinite;
 }
 
 .header-ornament {
   display: block;
-  color: #8a6030;
-  font-family: 'Pen', serif;
-  font-size: 0.35em;
-  letter-spacing: 0.6em;
-  margin-top: 0.5em;
-  opacity: 0.8;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 0.28em;
+  color: #7a5c33;
+  letter-spacing: 0.5em;
+  margin-top: 0.55em;
 }
 
 #homePage header h2 {
-  font-family: 'Scratch', serif;
-  color: #9a7850;
-  font-size: 0.85em;
-  letter-spacing: 0.25em;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  color: #6e5535;
+  font-size: 1.05em;
+  letter-spacing: 0.16em;
   margin-top: 0.4rem;
-  opacity: 0.9;
 }
 
-/* ── Divider ─────────────────────────────────────────────── */
+/* ── Divider — fine ink rule with a center flourish ─────── */
 .library-divider {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.8rem;
-  margin: 0.6rem auto 0;
-  width: 60%;
-  color: #7a5c2a;
-  font-size: 0.75em;
-  letter-spacing: 0.3em;
+  gap: 0.9rem;
+  margin: 0.7rem 0 0;
+  width: 46%;
+  color: #8a6a35;
+  font-size: 0.72em;
+  letter-spacing: 0.4em;
 }
 
 .library-divider::before,
@@ -172,55 +141,54 @@ body {
   content: '';
   flex: 1;
   height: 1px;
-  background: linear-gradient(to right, transparent, #7a5c2a, transparent);
+  background: linear-gradient(to right, transparent, #8a6a35 40%, #8a6a35 60%, transparent);
+  opacity: 0.6;
 }
 
-/* ── Book grid ───────────────────────────────────────────── */
+/* ── Plate grid — Da Vinci codex illustration plates ────── */
 #homePage main {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: flex-start;
-  gap: 28px;
+  gap: 34px 30px;
   max-width: 95rem;
   margin: 0 auto;
-  padding: 1.5rem 1rem 2rem;
+  padding: 1.6rem 1.5rem 2rem;
   flex: 1;
 }
 
-/* Book card — spine on the left */
+#homePage main a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.plate {
+  width: 33em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* The framed illustration — landscape, fits the wallpapers */
 #homePage main button {
-  width: 35em;
-  height: 18em;
-  border-radius: 2px 10px 10px 2px;
-  border: none;
-  border-left: 10px solid #5c3a14;
+  width: 100%;
+  height: 17em;
+  border: 1px solid rgba(110, 80, 35, 0.55);
+  outline: 1px solid rgba(110, 80, 35, 0.25);
+  outline-offset: 4px;
+  border-radius: 2px;
   box-shadow:
-    -5px 0 10px rgba(0, 0, 0, 0.6),
-    5px 6px 18px rgba(0, 0, 0, 0.5),
-    inset 0 0 0 1px rgba(160, 110, 40, 0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-left-color 0.3s ease;
+    0 3px 10px rgba(105, 75, 35, 0.28),
+    inset 0 0 0 4px #f3e9d2,
+    inset 0 0 0 5px rgba(110, 80, 35, 0.35);
+  transition: transform 0.35s ease, box-shadow 0.35s ease, outline-color 0.35s ease;
   display: block;
   overflow: hidden;
-  padding: 0;
+  padding: 4px;
   position: relative;
   cursor: pointer;
-  background: #1a1008;
-}
-
-/* Page-light shimmer on hover */
-#homePage main button::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(130deg, rgba(210, 165, 70, 0.18) 0%, transparent 55%);
-  opacity: 0;
-  transition: opacity 0.35s ease;
-  pointer-events: none;
-}
-
-#homePage main button:hover::after {
-  opacity: 1;
+  background: #f3e9d2;
 }
 
 #homePage main button img {
@@ -228,32 +196,64 @@ body {
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: sepia(35%) brightness(0.82);
-  transition: filter 0.35s ease, transform 0.35s ease;
+  border-radius: 1px;
+  filter: sepia(28%) saturate(0.85) brightness(0.97);
+  transition: filter 0.4s ease, transform 0.4s ease;
 }
 
 #homePage main button:hover {
-  transform: translateY(-8px) rotate(-0.6deg);
+  transform: translateY(-7px) rotate(-0.5deg);
+  outline-color: rgba(160, 115, 45, 0.6);
   box-shadow:
-    -5px 0 14px rgba(0, 0, 0, 0.7),
-    10px 16px 30px rgba(0, 0, 0, 0.65),
-    0 0 24px rgba(190, 130, 40, 0.25);
-  border-left-color: #c9973a;
+    0 14px 26px rgba(105, 75, 35, 0.38),
+    0 0 26px rgba(195, 150, 65, 0.3),
+    inset 0 0 0 4px #f3e9d2,
+    inset 0 0 0 5px rgba(160, 115, 45, 0.5);
 }
 
 #homePage main button:hover img {
-  filter: sepia(10%) brightness(1);
+  filter: sepia(4%) saturate(1.08) brightness(1.02);
   transform: scale(1.04);
+}
+
+/* Caption under each plate — like a figure label in a codex */
+.plate-caption {
+  margin-top: 0.7em;
+  max-width: 92%;
+}
+
+.plate-caption h3 {
+  font-family: 'Cinzel', Georgia, serif;
+  font-weight: 500;
+  font-size: 1.06em;
+  color: #7a5618;
+  letter-spacing: 0.12em;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.plate-caption p {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 1em;
+  color: #6b543a;
+  margin-top: 0.15em;
+  line-height: 1.35;
+}
+
+.plate:hover .plate-caption h3 {
+  color: #9a6e1c;
+  text-shadow: 0 0 14px rgba(200, 155, 65, 0.5);
 }
 
 /* ── Footer ─────────────────────────────────────────────── */
 #homePage footer {
-  padding: 0.8rem 1rem 1.2rem;
+  padding: 0.4rem 1rem 1.4rem;
   text-align: center;
-  color: #6e5030;
-  font-family: 'Scratch', serif;
-  font-size: 0.85em;
-  letter-spacing: 0.12em;
+  color: #7a6040;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 0.95em;
+  letter-spacing: 0.08em;
 }
 
 /* ── Game page ───────────────────────────────────────────── */
@@ -279,5 +279,5 @@ body {
 
 #gamePage button:hover {
   transform: scale(1.05);
-  text-shadow: 0px 0px 10px white;
+  text-shadow: 0 0 10px white;
 }
