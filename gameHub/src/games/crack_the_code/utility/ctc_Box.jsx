@@ -448,9 +448,9 @@ function Box(props) {
       });
     }
     if (props.currentLine == initialScript.length - 3) {
-      props.setPhone("/assets/crackthecode/image/ctc_phone_fam.png");
+      props.setPhone(`${import.meta.env.BASE_URL}assets/crackthecode/image/ctc_phone_fam.png`);
     } else {
-      props.setPhone("/assets/crackthecode/image/ctc_phone_pickUp.png");
+      props.setPhone(`${import.meta.env.BASE_URL}assets/crackthecode/image/ctc_phone_pickUp.png`);
     }
   }, [props.currentLine, temp, temp2, temp3]);
 
@@ -544,7 +544,7 @@ function Box(props) {
     <>
       <div id="BoxWrapper" style={{ opacity: props.style.opacity1 }}>
         <img
-          src="/assets/crackthecode/image/bomb_module.png"
+          src={`${import.meta.env.BASE_URL}assets/crackthecode/image/bomb_module.png`}
           alt="bomb"
           id="bomb_module"
         />

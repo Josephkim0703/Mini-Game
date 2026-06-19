@@ -9,16 +9,16 @@ import { initialScript } from "./utility/ctc_Script.jsx";
 function CrackTheCode(props) {
   const [gameOver, setGameover] = useState({ over: false, state: null });
   const [explosion, setExplosion] = useState(
-    "/assets/crackthecode/image/explosion.gif"
+    `${import.meta.env.BASE_URL}assets/crackthecode/image/explosion.gif`
   );
-  const [audio, setAudio] = useState("/assets/crackthecode/sounds/ctc_music_4.mp3");
+  const [audio, setAudio] = useState(`${import.meta.env.BASE_URL}assets/crackthecode/sounds/ctc_music_4.mp3`);
   const [startGame, setStartGame] = useState(false);
   const [isDark, setIsDark] = useState(false);
   const [index, setIndex] = useState(0);
   const [hide, setHide] = useState(Array(10).fill(false));
   const [currentLine, setCurrentLine] = useState(0);
   const [script, setScript] = useState(initialScript);
-  const [phone, setPhone] = useState("/assets/crackthecode/image/ctc_phone_blank.png");
+  const [phone, setPhone] = useState(`${import.meta.env.BASE_URL}assets/crackthecode/image/ctc_phone_blank.png`);
   const [style, setStyle] = useState({
     blur: 9,
     scale: 1,
@@ -29,7 +29,7 @@ function CrackTheCode(props) {
     width: "10rem",
   });
   const [background, setBackground] = useState(
-    "/assets/crackthecode/image/ctc_backdrop.png"
+    `${import.meta.env.BASE_URL}assets/crackthecode/image/ctc_backdrop.png`
   );
   const phoneRef = useRef(null);
   const flashRef = useRef(null);
@@ -47,7 +47,7 @@ function CrackTheCode(props) {
 
     const timeout = setTimeout(() => {
       flashRef.current.classList.add("light-pulse");
-      setBackground("/assets/crackthecode/image/ctc_black.jpg");
+      setBackground(`${import.meta.env.BASE_URL}assets/crackthecode/image/ctc_black.jpg`);
       setStyle((prev) => ({ ...prev, opacity1: 0 }));
       setIsDark(true);
     }, 37000);
@@ -57,7 +57,7 @@ function CrackTheCode(props) {
   const handleFlash = () => {
     if (!startGame || !isDark) return;
     flashRef.current.classList.remove("light-pulse");
-    setBackground("/assets/crackthecode/image/ctc_guytiedup.png");
+    setBackground(`${import.meta.env.BASE_URL}assets/crackthecode/image/ctc_guytiedup.png`);
     setStyle((prev) => ({ ...prev, opacity1: 1 }));
     setIsDark(false);
   };
@@ -66,18 +66,18 @@ function CrackTheCode(props) {
   const gameOverTimerRef = useRef(null);
   useEffect(() => {
     if (gameOver.over == true) {
-      setBackground("/assets/crackthecode/image/ctc_black.jpg");
+      setBackground(`${import.meta.env.BASE_URL}assets/crackthecode/image/ctc_black.jpg`);
       updateHide(3, false);
       updateHide(1, false);
-      setAudio("/assets/crackthecode/sounds/ctc_victory.mp3");
+      setAudio(`${import.meta.env.BASE_URL}assets/crackthecode/sounds/ctc_victory.mp3`);
       setBgmloop(false);
       if (gameOver.state == "lose") {
         updateHide(4, true);
         updateHide(5, true);
-        setAudio("/assets/crackthecode/sounds/ctc_explosion.mp3");
+        setAudio(`${import.meta.env.BASE_URL}assets/crackthecode/sounds/ctc_explosion.mp3`);
         setBgmloop(false);
         gameOverTimerRef.current = setTimeout(() => {
-          setBackground("/assets/crackthecode/image/ctc_black.jpg");
+          setBackground(`${import.meta.env.BASE_URL}assets/crackthecode/image/ctc_black.jpg`);
           updateHide(5, false);
         }, 1000);
       } else {
@@ -107,10 +107,10 @@ function CrackTheCode(props) {
     setCurrentLine(0);
     setIndex(0);
     setStartGame(false);
-    setPhone("/assets/crackthecode/image/ctc_phone_blank.png");
-    setBackground("/assets/crackthecode/image/ctc_backdrop.png");
+    setPhone(`${import.meta.env.BASE_URL}assets/crackthecode/image/ctc_phone_blank.png`);
+    setBackground(`${import.meta.env.BASE_URL}assets/crackthecode/image/ctc_backdrop.png`);
     setIsDark(false);
-    setAudio("/assets/crackthecode/sounds/ctc_music_4.mp3");
+    setAudio(`${import.meta.env.BASE_URL}assets/crackthecode/sounds/ctc_music_4.mp3`);
     setBgmloop(true);
   };
 

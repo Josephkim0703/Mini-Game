@@ -7,7 +7,7 @@ import { audioFile } from "./utility/out_Audiofile.jsx";
 function StuckInMyHead(props) {
   const [hide, setHide] = useState(Array(10).fill(false));
   const [background, setBackground] = useState(
-    "/assets/onceuponatune/image/out_background_1.jpg"
+    `${import.meta.env.BASE_URL}assets/onceuponatune/image/out_background_1.jpg`
   );
   const [song, setSong] = useState(null);
   const [answer, setAnswer] = useState(null);
@@ -149,7 +149,7 @@ function StuckInMyHead(props) {
     setCurrent(0);
     setLives(0)
     setLevel((prev) => prev + 1);
-    setBackground("/assets/onceuponatune/image/out_floor.png");
+    setBackground(`${import.meta.env.BASE_URL}assets/onceuponatune/image/out_floor.png`);
     updateHide(6, false);
     updateHide(4, false);
     updateHide(2, true);

@@ -5,13 +5,13 @@ function out_StartBox(props) {
   const handleStart = () => {
     props.updateHide(2, true);
     props.updateHide(3, true);
-    props.setBackground("/assets/onceuponatune/image/out_floor.png");
+    props.setBackground(`${import.meta.env.BASE_URL}assets/onceuponatune/image/out_floor.png`);
   };
   const handleGenre = (x) => {
     props.setGenre(x);
     props.updateHide(0, true);
     props.updateHide(1, true);
-    props.setBackground("/assets/onceuponatune/image/out_background_1.jpg");
+    props.setBackground(`${import.meta.env.BASE_URL}assets/onceuponatune/image/out_background_1.jpg`);
   };
 
   return (
@@ -21,12 +21,12 @@ function out_StartBox(props) {
           <div id="out_instruction">
             <button type="button" onClick={handleStart}>
               <img
-                src="/assets/onceuponatune/image/out_startButton.png"
+                src={`${import.meta.env.BASE_URL}assets/onceuponatune/image/out_startButton.png`}
                 alt="start button"
               />
             </button>
             <img
-              src="/assets/onceuponatune/image/out_dartboard.png"
+              src={`${import.meta.env.BASE_URL}assets/onceuponatune/image/out_dartboard.png`}
               alt="dart board"
             />
           </div>
@@ -34,19 +34,19 @@ function out_StartBox(props) {
         {props.hide[3] && (
           <div id="out_option_buttons">
             <button type="button" onClick={() => handleGenre("all")}>
-              <img src="/assets/onceuponatune/image/out_bandaid.png" alt="bandaid" />
+              <img src={`${import.meta.env.BASE_URL}assets/onceuponatune/image/out_bandaid.png`} alt="bandaid" />
             </button>
             <button type="button" onClick={() => handleGenre("pop")}>
-              <img src="/assets/onceuponatune/image/out_gum.png" alt="gum" />
+              <img src={`${import.meta.env.BASE_URL}assets/onceuponatune/image/out_gum.png`} alt="gum" />
             </button>
             <button type="button" onClick={() => handleGenre("r&b")}>
-              <img src="/assets/onceuponatune/image/out_chapstick.png" alt="chapstick" />
+              <img src={`${import.meta.env.BASE_URL}assets/onceuponatune/image/out_chapstick.png`} alt="chapstick" />
             </button>
             <button type="button" onClick={() => handleGenre("rap")}>
-              <img src="/assets/onceuponatune/image/out_cig.png" alt="cigarette bud" />
+              <img src={`${import.meta.env.BASE_URL}assets/onceuponatune/image/out_cig.png`} alt="cigarette bud" />
             </button>
             <button type="button" onClick={() => handleGenre("edm")}>
-              <img src="/assets/onceuponatune/image/out_candy.png" alt="candy" />
+              <img src={`${import.meta.env.BASE_URL}assets/onceuponatune/image/out_candy.png`} alt="candy" />
             </button>
           </div>
         )}

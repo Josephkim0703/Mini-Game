@@ -3,11 +3,11 @@ import "../css/out.css";
 function Box(props) {
   const [value, setValue] = useState("");
   const [heart, setHeart] = useState([
-    "/assets/onceuponatune/image/out_life0.png",
-    "/assets/onceuponatune/image/out_life1.png",
-    "/assets/onceuponatune/image/out_life2.png",
-    "/assets/onceuponatune/image/out_life3.png",
-    "/assets/onceuponatune/image/out_life4.png",
+    `${import.meta.env.BASE_URL}assets/onceuponatune/image/out_life0.png`,
+    `${import.meta.env.BASE_URL}assets/onceuponatune/image/out_life1.png`,
+    `${import.meta.env.BASE_URL}assets/onceuponatune/image/out_life2.png`,
+    `${import.meta.env.BASE_URL}assets/onceuponatune/image/out_life3.png`,
+    `${import.meta.env.BASE_URL}assets/onceuponatune/image/out_life4.png`,
   ]);
   //handles answers
   const handleAnswer = () => {
@@ -25,7 +25,7 @@ function Box(props) {
           if (arr[prevLife]) {
             arr[
               prevLife
-            ] = `/assets/onceuponatune/image/out_life_crushed${prevLife}.png`;
+            ] = `${import.meta.env.BASE_URL}assets/onceuponatune/image/out_life_crushed${prevLife}.png`;
           }
           return arr;
         });
@@ -132,7 +132,7 @@ function Box(props) {
               </button>
             </div>
           </div>
-          <img src="/assets/onceuponatune/image/out_mixingtable.png" alt="" />
+          <img src={`${import.meta.env.BASE_URL}assets/onceuponatune/image/out_mixingtable.png`} alt="" />
         </div>
         <div id="out_healthBar">
           <h1>{props.text}</h1>

@@ -4,12 +4,12 @@ import "../css/out.css";
 function out_EndCredit(props) {
   const [text, setText] = useState("");
   const [blur, setBlur] = useState(0);
-  const [img, setImg] = useState("/assets/onceuponatune/image/out_lose.png");
+  const [img, setImg] = useState(`${import.meta.env.BASE_URL}assets/onceuponatune/image/out_lose.png`);
 
   useEffect(() => {
     if (props.status === "win") {
-      setImg("/assets/onceuponatune/image/out_win.png");
-      props.setBackground("/assets/onceuponatune/image/out_black.png");
+      setImg(`${import.meta.env.BASE_URL}assets/onceuponatune/image/out_win.png`);
+      props.setBackground(`${import.meta.env.BASE_URL}assets/onceuponatune/image/out_black.png`);
       if (props.lives == 0) {
         setBlur(0);
         setText("Are you cheating? You are a machine!");
@@ -27,8 +27,8 @@ function out_EndCredit(props) {
         setText("One more can and you would have been wasted!");
       }
     } else {
-      setImg("/assets/onceuponatune/image/out_lose.png");
-      props.setBackground("/assets/onceuponatune/image/out_black.png");
+      setImg(`${import.meta.env.BASE_URL}assets/onceuponatune/image/out_lose.png`);
+      props.setBackground(`${import.meta.env.BASE_URL}assets/onceuponatune/image/out_black.png`);
       if (props.point == 0) {
         setBlur(5);
         setText("Dude you're wasted!");
@@ -58,7 +58,7 @@ function out_EndCredit(props) {
       <h1 style={{ filter: `blur(${blur}px)` }}>{text}</h1>
       <button type="button" onClick={props.handleMenu}>
         <img
-          src="/assets/onceuponatune/image/out_tryagain.png"
+          src={`${import.meta.env.BASE_URL}assets/onceuponatune/image/out_tryagain.png`}
           alt="advil bottle that says try again"
         />
       </button>

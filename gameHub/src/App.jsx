@@ -17,7 +17,7 @@ function App() {
         "Defuse the bomb before time runs out — and don't let the lights stay off.",
       component: CrackTheCode,
       link: null,
-      thumbnail: "/assets/wallpapers/crackthecode.png",
+      thumbnail: `${import.meta.env.BASE_URL}assets/wallpapers/crackthecode.png`,
       status: "active",
     },
     {
@@ -27,7 +27,7 @@ function App() {
         "An earworm guessing game. How well do you really know your tunes?",
       component: OnceUponATune,
       link: null,
-      thumbnail: "/assets/wallpapers/stuckinmyhead.png",
+      thumbnail: `${import.meta.env.BASE_URL}assets/wallpapers/stuckinmyhead.png`,
       status: "active",
     },
     {
@@ -36,7 +36,7 @@ function App() {
       description: "Explore the world of Devil Fruits and their powers.",
       component: () => <div>Off Site</div>,
       link: "https://josephkim0703.github.io/devil-fruit-encyclopedia/",
-      thumbnail: "/assets/wallpapers/onepiece.jpg",
+      thumbnail: `${import.meta.env.BASE_URL}assets/wallpapers/onepiece.jpg`,
       status: "active",
     },
     {
@@ -45,7 +45,7 @@ function App() {
       description: "Step into the domain — a Jujutsu Kaisen tribute.",
       component: () => <div>Off Site</div>,
       link: "https://josephkim0703.github.io/Domain-Expansion/",
-      thumbnail: "/assets/wallpapers/domainExpansion2.png",
+      thumbnail: `${import.meta.env.BASE_URL}assets/wallpapers/domainExpansion2.png`,
       status: "active",
     },
     {
@@ -53,7 +53,7 @@ function App() {
       theme: "soon",
       description: "This page hasn't been written yet…",
       component: () => <div>Coming Soon!</div>,
-      thumbnail: "/assets/wallpapers/construction.png",
+      thumbnail: `${import.meta.env.BASE_URL}assets/wallpapers/construction.png`,
       status: "none",
     },
     {
@@ -61,7 +61,7 @@ function App() {
       theme: "soon",
       description: "This page hasn't been written yet…",
       component: () => <div>Coming Soon!</div>,
-      thumbnail: "/assets/wallpapers/construction.png",
+      thumbnail: `${import.meta.env.BASE_URL}assets/wallpapers/construction.png`,
       status: "none",
     },
   ];
